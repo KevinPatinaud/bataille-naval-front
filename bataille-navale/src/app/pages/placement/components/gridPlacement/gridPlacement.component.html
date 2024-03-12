@@ -1,0 +1,15 @@
+<div class="gridPlacement">
+    <div class="grid" (mouseleave)="onLeaveGrid()">
+        <div *ngFor="let xit of [].constructor(10) ; let x = index" class="column">
+            <div *ngFor="let yit of [].constructor(10) ; let y = index" 
+            class="case" [class.cellIsConstructable]="cellHoverCanBeSelected() &&  cellIsInTheBoatRange({ x , y})" 
+            [class.cellIsNotConstructable]="!cellHoverCanBeSelected() &&  cellIsInTheBoatRange({ x , y})" 
+            [class.occupied]="cellIsOccupied({ x , y})"
+            (click)="onSelectCell( {x , y} )"
+            (mouseenter)="onHoverCell( {x , y})"></div>
+        </div>
+    </div>
+    <div class="infoArea" *ngIf="cellHoverCanBeSelected()">
+     Appuyer sur la touche “espace” changer l'orientation du bateau
+    </div>
+</div>

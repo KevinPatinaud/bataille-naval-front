@@ -1,0 +1,23 @@
+<div class= "boatSelector">
+
+
+    <div class="boatLine"  (click)="onBoatSelected(PorteAvion)">      
+        <img  [class.boatImgSelected]="selectedBoat?.type === PorteAvion.type" 
+        [class.boatAlreadyPositionned]="isBoatOnTheGrid(PorteAvion)" class="boatImg"
+         src="../../../../../assets/images/porte-avion.jpg">
+    </div>
+    <div class="boatLine" (click)="onBoatSelected(Croiseur)">
+        <img [class.boatImgSelected]="selectedBoat?.type === Croiseur.type" [class.boatAlreadyPositionned]="isBoatOnTheGrid(Croiseur)" class="boatImg" src="../../../../../assets/images/croiseur.jpg">
+    </div>
+    <div class="boatLine" (click)="onBoatSelected(SousMarin_1 )">
+        <img [class.boatImgSelected]="selectedBoat?.type === SousMarin_1.type" [class.boatAlreadyPositionned]="isBoatOnTheGrid(SousMarin_1)" class="boatImg" src="../../../../../assets/images/sous-marin.jpg">
+    </div>
+    <div class="boatLine" (click)="onBoatSelected(SousMarin_2 )">
+        <img [class.boatImgSelected]="selectedBoat?.type === SousMarin_2.type" [class.boatAlreadyPositionned]="isBoatOnTheGrid(SousMarin_2)" class="boatImg" src="../../../../../assets/images/sous-marin.jpg">
+    </div>
+    <div class="boatLine" (click)="onBoatSelected(Torpilleur)">
+        <img [class.boatImgSelected]="selectedBoat?.type === Torpilleur.type" [class.boatAlreadyPositionned]="isBoatOnTheGrid(Torpilleur)" class="boatImg" src="../../../../../assets/images/torpilleur.jpg">
+    </div>
+
+
+</div>

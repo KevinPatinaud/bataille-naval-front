@@ -1,0 +1,52 @@
+.boatSelector {
+  border-radius: 60px;
+  background-image: url("../../../../../assets/images/selectionBox.jpg");
+  background-position: center;
+  background-size: 100% 100%;
+
+  position: fixed;
+  right: 40px;
+  top: 20px;
+  padding-top: 35px;
+  padding-bottom: 45px;
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.boatLine {
+  width: 170px;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.boatImg {
+  width: 140px;
+  height: 140px;
+  border-radius: 20px;
+}
+
+.boatImgSelected {
+  width: 150px;
+  height: 150px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.boatImg:hover {
+  width: 170px;
+  height: 170px;
+  border-radius: 20px;
+  box-shadow: none;
+}
+
+.boatAlreadyPositionned {
+  cursor: not-allowed;
+  width: 140px;
+  height: 140px;
+  opacity: 0.5;
+}
+
+.boatName {
+  margin-block-start: 0em;
+}

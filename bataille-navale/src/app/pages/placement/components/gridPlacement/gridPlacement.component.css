@@ -1,0 +1,44 @@
+.gridPlacement {
+  position: fixed;
+  left: 25%;
+  top: 40px;
+  display: flex;
+  width: 50%;
+  justify-content: center;
+}
+.grid {
+  display: flex;
+  width: 100%;
+  background-image: url("../../../../../assets/images/gridBackground.png");
+  background-position: center;
+  background-size: 100% 100%;
+}
+.cellIsConstructable {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255);
+}
+.cellIsNotConstructable {
+  cursor: not-allowed;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.occupied {
+  background-image: url("../../../../../assets/images/construction.jpg");
+  background-position: center;
+  background-size: cover;
+}
+.column {
+  width: 10%;
+}
+
+.case {
+  border: 1px solid black;
+  height: 70px;
+}
+
+.infoArea {
+  position: fixed;
+  top: 760px;
+  font-size: 22px;
+  color: #081997;
+  font-weight: bold;
+}
