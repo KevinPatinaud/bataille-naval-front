@@ -22,6 +22,7 @@ PARAMETRES NORMAUX
   displayPlacement = true;
   displayLetsGoAnimation = false;
   displayAttackGame = false;
+  displayWinAnimation = false;
   */
 
   // __________________________________________________________________________
@@ -36,6 +37,7 @@ PARAMETRES NORMAUX
   displayPlacement = false;
   displayLetsGoAnimation = false;
   displayAttackGame = true;
+  displayWinAnimation = false;
   //____________________________________________________________________________________________________________
 
   onAllBoatAreDispose(gridBoats: GridBoat[]) {
@@ -45,11 +47,21 @@ PARAMETRES NORMAUX
     this.displayLetsGoAnimation = true;
   }
 
-  onAnimationNewGameFinished() {
+  onLetsGoAnimationFinished() {
     this.displayLetsGoAnimation = false;
+    this.displayAttackGame = true;
   }
 
   onGameFinished(statusEndGame: StatusEndGame) {
-    console.log("Game engine : You win");
+    this.displayAttackGame = false;
+
+    if (statusEndGame === StatusEndGame.Win) {
+      console.log("Game engine : You win");
+      this.displayWinAnimation = true;
+    }
+  }
+
+  onAnimationWinFinished() {
+    this.displayWinAnimation = true;
   }
 }

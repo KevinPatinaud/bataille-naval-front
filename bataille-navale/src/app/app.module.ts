@@ -5,10 +5,11 @@ import { GameEngineComponent } from "./pages/gameEngine/gameEngine.component";
 import { PlacementComponent } from "./pages/placement/placement.component";
 import { BoatSelectorComponent } from "./pages/placement/components/boatSelector/boatSelector.component";
 import { GridPlacementComponent } from "./pages/placement/components/gridPlacement/gridPlacement.component";
-import { AnimationLetsGoComponent } from "./components/animation_new_game/animationNewGame.component";
+import { AnimationLetsGoComponent } from "./components/animation_new_game/animationLetsGo.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AttackGameComponent } from "./pages/attackGame/attackGame.component";
 import { OpponentBoardComponent } from "./pages/attackGame/opponentBoard/opponentBoard.component";
+import { AnimationWinComponent } from "./components/animation_win/animationWin.component";
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { OpponentBoardComponent } from "./pages/attackGame/opponentBoard/opponen
     AnimationLetsGoComponent,
     AttackGameComponent,
     OpponentBoardComponent,
+    AnimationWinComponent,
   ],
   imports: [BrowserModule, BrowserAnimationsModule],
   providers: [],

@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Output } from "@angular/core";
-import { PorteAvion } from "src/app/locales/boats";
 import GridBoat from "src/app/models/GridBoat";
 import { Boat } from "src/app/models/boat";
 
