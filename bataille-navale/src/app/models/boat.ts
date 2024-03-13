@@ -1,4 +1,6 @@
+import { BoatType } from "../locales/boats";
+
 export interface Boat {
-  type: string;
+  type: BoatType;
   size: number;
 }

@@ -8,9 +8,9 @@ import {
 } from "@angular/animations";
 
 @Component({
-  selector: "app-animation-new-game",
-  templateUrl: "./animationNewGame.component.html",
-  styleUrls: ["./animationNewGame.component.css"],
+  selector: "app-animation-lets-go",
+  templateUrl: "./animationLetsGo.component.html",
+  styleUrls: ["./animationLetsGo.component.css"],
   animations: [
     trigger("fadeInOut", [
       transition(":enter", [
@@ -21,7 +21,7 @@ import {
     ]),
   ],
 })
-export class AnimationNewGameComponent {
+export class AnimationLetsGoComponent {
   @Output() animationFinishedEvent = new EventEmitter<void>();
 
   animationDone(event: any) {

@@ -6,6 +6,7 @@ import {
   SousMarin_2,
   Torpilleur,
 } from "src/app/locales/boats";
+import { StatusEndGame } from "src/app/locales/statusEndGame";
 import GridBoat from "src/app/models/GridBoat";
 
 @Component({
@@ -19,7 +20,7 @@ export class GameEngineComponent {
 PARAMETRES NORMAUX
   gridBoats = [ ] as GridBoat[];
   displayPlacement = true;
-  displayNewGameAnimation = false;
+  displayLetsGoAnimation = false;
   displayAttackGame = false;
   */
 
@@ -33,7 +34,7 @@ PARAMETRES NORMAUX
     { xHead: 6, yHead: 8, boatModel: Torpilleur, isHorizontal: false },
   ] as GridBoat[];
   displayPlacement = false;
-  displayNewGameAnimation = false;
+  displayLetsGoAnimation = false;
   displayAttackGame = true;
   //____________________________________________________________________________________________________________
 
@@ -41,10 +42,14 @@ PARAMETRES NORMAUX
     console.log("Let's go");
     this.gridBoats = gridBoats;
     this.displayPlacement = false;
-    this.displayNewGameAnimation = true;
+    this.displayLetsGoAnimation = true;
   }
 
   onAnimationNewGameFinished() {
-    this.displayNewGameAnimation = false;
+    this.displayLetsGoAnimation = false;
+  }
+
+  onGameFinished(statusEndGame: StatusEndGame) {
+    console.log("Game engine : You win");
   }
 }

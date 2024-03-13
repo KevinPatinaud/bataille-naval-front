@@ -1,5 +1,6 @@
-import { Component } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 import { Coordinate } from "src/app/models/coordinate";
+import { OpponentService } from "src/app/services/opponent/opponent.service";
 
 @Component({
   selector: "app-opponent-board",
@@ -8,6 +9,11 @@ import { Coordinate } from "src/app/models/coordinate";
 })
 export class OpponentBoardComponent {
   gridCells = [] as CellOpponentBoard[][];
+
+  @Output() allOpponentBoatDestroyedEvent = new EventEmitter();
+  @Output() attackLaunchedEvent = new EventEmitter();
+
+  constructor(private opponentService: OpponentService) {}
 
   ngOnInit() {
     this.gridCells = [] as CellOpponentBoard[][];
@@ -27,10 +33,17 @@ export class OpponentBoardComponent {
 
   onCellSelected(coordinate: Coordinate) {
     this.gridCells[coordinate.x][coordinate.y].isRevealed = true;
-
+    //---------------------------------------------------------------------------------------------------------------------------
     // Todo interroger le serveur pour savoir si la case est occupée par l'opposant
     this.gridCells[coordinate.x][coordinate.y].isOccupiedByOpponent =
-      coordinate.x % 2 === 1;
+      this.opponentService.attackCell(coordinate);
+
+    this.attackLaunchedEvent.emit();
+
+    if (this.opponentService.isAllOpponentBoatDestroyed()) {
+      this.allOpponentBoatDestroyedEvent.emit();
+    }
+    //---------------------------------------------------------------------------------------------------------------------------
   }
 
   isCellRevealed(coordinate: Coordinate) {
