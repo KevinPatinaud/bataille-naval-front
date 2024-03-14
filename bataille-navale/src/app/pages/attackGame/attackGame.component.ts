@@ -10,17 +10,7 @@ import { WebSocketService } from "src/app/services/websocket/WebSocketService";
 export class AttackGameComponent {
   @Output() onGameFinishedEvent = new EventEmitter<StatusEndGame>();
 
-  constructor(private webSocketService: WebSocketService) {}
-
-  ngOnInit() {
-    this.webSocketService.connect();
-  }
-
-  sendMessage() {
-    this.webSocketService.sendMessage("Hello from Angular!");
-  }
-
-  onAttackLaunched() {}
+  constructor() {}
 
   onAllOpponentBoatDestroyed() {
     this.onGameFinishedEvent.emit(StatusEndGame.Win);

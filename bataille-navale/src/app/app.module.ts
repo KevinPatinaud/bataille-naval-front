@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AttackGameComponent } from "./pages/attackGame/attackGame.component";
 import { OpponentBoardComponent } from "./pages/attackGame/opponentBoard/opponentBoard.component";
 import { AnimationWinComponent } from "./components/animation_win/animationWin.component";
+import { MyBoardComponent } from "./pages/attackGame/myBoard/myBoard.component";
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { AnimationWinComponent } from "./components/animation_win/animationWin.c
     AttackGameComponent,
     OpponentBoardComponent,
     AnimationWinComponent,
+    MyBoardComponent,
   ],
   imports: [BrowserModule, BrowserAnimationsModule],
   providers: [],

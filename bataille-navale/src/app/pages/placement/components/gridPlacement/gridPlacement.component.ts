@@ -41,7 +41,6 @@ export class GridPlacementComponent {
 
   onHoverCell(caseHover: Coordinate) {
     this.cellHover = caseHover;
-    console.log("coucou");
   }
 
   onLeaveGrid() {
