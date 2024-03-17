@@ -13,20 +13,26 @@
   background-position: center;
   background-size: 100% 100%;
 }
-.cellIsConstructable {
-  cursor: pointer;
+.cellInTheBoatRange {
   background-image: url("../../../../../assets/images/construction.jpg");
   background-position: center;
   background-size: cover;
 }
+.cellIsConstructable {
+  cursor: pointer;
+}
 .cellIsNotConstructable {
-  cursor: not-allowed;
-  background-color: rgba(255, 255, 255, 0.5);
+  opacity: 0.5;
+}
+.cellIsNearABoat {
+  background-color: rgba(255, 255, 255);
+  opacity: 0.5;
 }
 .occupied {
   background-image: url("../../../../../assets/images/construction.jpg");
   background-position: center;
   background-size: cover;
+  opacity: 1;
 }
 .column {
   width: 10%;

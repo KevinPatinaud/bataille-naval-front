@@ -15,17 +15,17 @@ import Boat from "src/app/models/boat";
   styleUrls: ["./gameEngine.component.css"],
 })
 export class GameEngineComponent {
-  /*
+  /**/
   //____________________________________________________________________________________________________________
   //PARAMETRES NORMAUX
-  gridBoats = [] as GridBoat[];
+  gridBoats = [] as Boat[];
   displayPlacement = true;
   displayLetsGoAnimation = false;
   displayAttackGame = false;
   displayWinAnimation = false;
-*/
+  /* */
   // __________________________________________________________________________
-
+  /*
   // Paramètres pour lancer directement le jeu
   gridBoats = [
     {
@@ -56,11 +56,11 @@ export class GameEngineComponent {
   //____________________________________________________________________________________________________________/* */
 
   onAllBoatAreDispose(gridBoats: Boat[]) {
-    console.log("Let's go");
-    this.gridBoats = gridBoats;
-
-    this.displayPlacement = false;
-    this.displayLetsGoAnimation = true;
+    setTimeout(() => {
+      this.gridBoats = gridBoats;
+      this.displayPlacement = false;
+      this.displayLetsGoAnimation = true;
+    }, 500);
   }
 
   onLetsGoAnimationFinished() {
