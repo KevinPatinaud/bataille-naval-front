@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Output } from "@angular/core";
 import { Subscription } from "rxjs";
+import { Cell } from "src/app/models/cell";
 import { Coordinate } from "src/app/models/coordinate";
-import { OpponentService } from "src/app/services/opponent/opponent.service";
+import { GameService } from "src/app/services/game/game.service";
 
 @Component({
   selector: "app-opponent-board",
@@ -10,34 +11,27 @@ import { OpponentService } from "src/app/services/opponent/opponent.service";
 })
 export class OpponentBoardComponent {
   subscription: Subscription;
-  revealedCells = [] as CellOpponentBoard[];
+  revealedCells = [] as Cell[];
 
-  constructor(private opponentService: OpponentService) {
-    this.subscription =
-      this.opponentService.opponentRevealedCellsEvent.subscribe(
-        (
-          revealedCellsServer: { x: number; y: number; cellContent: string }[]
-        ) => {
-          console.log("opponentBoard :");
-          console.log(revealedCellsServer);
-          this.revealedCells = [];
-          revealedCellsServer.forEach((c) => {
-            this.revealedCells.push({
-              coordinate: { x: c.x, y: c.y },
-              isOccupiedByOpponent: c.cellContent === "BOAT",
-            });
-          });
-        }
-      );
+  constructor(private gameService: GameService) {
+    this.subscription = this.gameService.opponentRevealedCellsEvent.subscribe(
+      (revealedCells: Cell[]) => {
+        console.log("opponentBoard :");
+        console.log(revealedCells);
+        this.revealedCells = revealedCells;
+      }
+    );
   }
   onCellSelected(coordinate: Coordinate) {
-    this.opponentService.attackCell(coordinate);
+    if (!this.isCellRevealed(coordinate)) {
+      this.gameService.attackCell(coordinate);
+    }
   }
 
   isCellRevealed(coordinate: Coordinate) {
     return (
       this.revealedCells.filter(
-        (cell: CellOpponentBoard) =>
+        (cell: Cell) =>
           cell.coordinate.x === coordinate.x &&
           cell.coordinate.y === coordinate.y
       ).length >= 1
@@ -46,13 +40,8 @@ export class OpponentBoardComponent {
 
   isCellOccupiedByOpponent(coordinate: Coordinate) {
     return this.revealedCells.find(
-      (cell: CellOpponentBoard) =>
+      (cell: Cell) =>
         cell.coordinate.x === coordinate.x && cell.coordinate.y === coordinate.y
-    )?.isOccupiedByOpponent;
+    )?.isOccupied;
   }
-}
-
-interface CellOpponentBoard {
-  coordinate: Coordinate;
-  isOccupiedByOpponent: boolean | undefined;
 }

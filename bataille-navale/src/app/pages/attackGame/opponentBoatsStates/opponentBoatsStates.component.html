@@ -1,0 +1,5 @@
+<div class="opponentBoatStates">
+<div *ngFor="let boat of opponentBoats" class="divBoat">
+    <img class="imgBoat" [class.boatDestroyed]="boat.boatState?.isDestroyed" src={{boat.boatDescription.image}}/>
+</div>
+</div>

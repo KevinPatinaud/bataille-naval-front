@@ -7,7 +7,7 @@ import {
   Torpilleur,
 } from "src/app/locales/boats";
 import { StatusEndGame } from "src/app/locales/statusEndGame";
-import GridBoat from "src/app/models/GridBoat";
+import Boat from "src/app/models/boat";
 
 @Component({
   selector: "app-game-engine",
@@ -17,32 +17,48 @@ import GridBoat from "src/app/models/GridBoat";
 export class GameEngineComponent {
   /*
   //____________________________________________________________________________________________________________
-PARAMETRES NORMAUX
-  gridBoats = [ ] as GridBoat[];
+  //PARAMETRES NORMAUX
+  gridBoats = [] as GridBoat[];
   displayPlacement = true;
   displayLetsGoAnimation = false;
   displayAttackGame = false;
   displayWinAnimation = false;
-  */
-
+*/
   // __________________________________________________________________________
+
   // Paramètres pour lancer directement le jeu
   gridBoats = [
-    { xHead: 4, yHead: 4, boatModel: PorteAvion, isHorizontal: false },
-    { xHead: 4, yHead: 7, boatModel: Croiseur, isHorizontal: true },
-    { xHead: 8, yHead: 5, boatModel: SousMarin_1, isHorizontal: true },
-    { xHead: 1, yHead: 5, boatModel: SousMarin_2, isHorizontal: false },
-    { xHead: 6, yHead: 8, boatModel: Torpilleur, isHorizontal: false },
-  ] as GridBoat[];
+    {
+      boatPosition: { xHead: 4, yHead: 4, isHorizontal: false },
+      boatDescription: PorteAvion,
+    },
+    {
+      boatPosition: { xHead: 4, yHead: 7, isHorizontal: true },
+      boatDescription: Croiseur,
+    },
+    {
+      boatPosition: { xHead: 8, yHead: 5, isHorizontal: true },
+      boatDescription: SousMarin_1,
+    },
+    {
+      boatPosition: { xHead: 1, yHead: 5, isHorizontal: false },
+      boatDescription: SousMarin_2,
+    },
+    {
+      boatPosition: { xHead: 6, yHead: 8, isHorizontal: false },
+      boatDescription: Torpilleur,
+    },
+  ] as Boat[];
   displayPlacement = false;
   displayLetsGoAnimation = false;
   displayAttackGame = true;
   displayWinAnimation = false;
-  //____________________________________________________________________________________________________________
+  //____________________________________________________________________________________________________________/* */
 
-  onAllBoatAreDispose(gridBoats: GridBoat[]) {
+  onAllBoatAreDispose(gridBoats: Boat[]) {
     console.log("Let's go");
     this.gridBoats = gridBoats;
+
     this.displayPlacement = false;
     this.displayLetsGoAnimation = true;
   }
@@ -53,15 +69,16 @@ PARAMETRES NORMAUX
   }
 
   onGameFinished(statusEndGame: StatusEndGame) {
-    this.displayAttackGame = false;
-
-    if (statusEndGame === StatusEndGame.Win) {
-      console.log("Game engine : You win");
-      this.displayWinAnimation = true;
-    }
+    setTimeout(() => {
+      this.displayAttackGame = false;
+      if (statusEndGame === StatusEndGame.Win) {
+        console.log("Game engine : You win");
+        this.displayWinAnimation = true;
+      } else {
+        console.log("Game engine : You lose");
+      }
+    }, 500);
   }
 
-  onAnimationWinFinished() {
-    this.displayWinAnimation = true;
-  }
+  onAnimationWinFinished() {}
 }

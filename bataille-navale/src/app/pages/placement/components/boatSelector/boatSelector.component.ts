@@ -6,8 +6,8 @@ import {
   SousMarin_2,
   Torpilleur,
 } from "src/app/locales/boats";
-import GridBoat from "src/app/models/GridBoat";
-import { Boat } from "src/app/models/boat";
+import Boat from "src/app/models/boat";
+import { BoatDescription } from "src/app/models/boatDescription";
 
 @Component({
   selector: "app-boat-selector",
@@ -15,10 +15,10 @@ import { Boat } from "src/app/models/boat";
   styleUrls: ["./boatSelector.component.css"],
 })
 export class BoatSelectorComponent {
-  @Output() onBoatSelectedEvent = new EventEmitter<Boat>();
+  @Output() onBoatSelectedEvent = new EventEmitter<BoatDescription>();
   @Output() onLastBoatSelectedEvent = new EventEmitter();
-  @Input() selectedBoat?: Boat;
-  @Input() onGridBoats?: GridBoat[];
+  @Input() selectedBoat?: BoatDescription;
+  @Input() onGridBoats?: Boat[];
 
   PorteAvion = PorteAvion;
   Croiseur = Croiseur;
@@ -26,7 +26,7 @@ export class BoatSelectorComponent {
   SousMarin_2 = SousMarin_2;
   Torpilleur = Torpilleur;
 
-  onBoatSelected(boat: Boat) {
+  onBoatSelected(boat: BoatDescription) {
     if (!this.isBoatOnTheGrid(boat)) {
       this.onBoatSelectedEvent.emit(boat);
     }
@@ -35,10 +35,11 @@ export class BoatSelectorComponent {
     }
   }
 
-  isBoatOnTheGrid(boat: Boat) {
+  isBoatOnTheGrid(boat: BoatDescription) {
     return (
-      this.onGridBoats?.filter((b: GridBoat) => b.boatModel.type === boat.type)
-        .length === 1
+      this.onGridBoats?.filter(
+        (b: Boat) => b.boatDescription.type === boat.type
+      ).length === 1
     );
   }
 }

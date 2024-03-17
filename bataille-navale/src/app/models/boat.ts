@@ -1,6 +1,9 @@
-import { BoatType } from "../locales/boats";
+import { BoatDescription } from "./boatDescription";
+import { BoatPosition } from "./boatPosition";
+import { BoatState } from "./boatState";
 
-export interface Boat {
-  type: BoatType;
-  size: number;
+export default interface Boat {
+  boatDescription: BoatDescription;
+  boatPosition?: BoatPosition;
+  boatState?: BoatState;
 }

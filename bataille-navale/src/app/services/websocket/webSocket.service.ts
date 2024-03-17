@@ -7,9 +7,7 @@ import * as SockJS from "sockjs-client";
 })
 export class WebSocketService {
   stompClient: CompatClient;
-  serverUrl = "ws://localhost:8080/batailleNavale";
-  idGame = "ID_GAME_1";
-  idPlayer = "player_1";
+  serverUrl = "ws://localhost:8080/bataille-navale";
 
   constructor() {
     this.stompClient = Stomp.over(new WebSocket(this.serverUrl));
@@ -19,18 +17,11 @@ export class WebSocketService {
     this.stompClient.connect({}, callback);
   }
 
-  subscribe(action: string, callback: messageCallbackType) {
-    this.stompClient.subscribe(
-      "/diffuse/" + this.idGame + "/" + action,
-      callback
-    );
+  subscribe(uri: string, callback: messageCallbackType) {
+    this.stompClient.subscribe(uri, callback);
   }
 
-  send(action: string, data: string) {
-    this.stompClient.send(
-      "/action/" + this.idGame + "/" + action + "/" + this.idPlayer,
-      {},
-      data
-    );
+  send(uri: string, data: string) {
+    this.stompClient.send(uri, {}, data);
   }
 }

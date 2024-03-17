@@ -5,8 +5,8 @@ import {
   Input,
   Output,
 } from "@angular/core";
-import GridBoat from "src/app/models/GridBoat";
-import { Boat } from "src/app/models/boat";
+import Boat from "src/app/models/boat";
+import { BoatDescription } from "src/app/models/boatDescription";
 import { Coordinate } from "src/app/models/coordinate";
 
 @Component({
@@ -15,13 +15,13 @@ import { Coordinate } from "src/app/models/coordinate";
   styleUrls: ["./gridPlacement.component.css"],
 })
 export class GridPlacementComponent {
-  @Input() selectedBoat?: Boat;
-  @Output() gridUpdateEvent = new EventEmitter<GridBoat[]>();
+  @Input() selectedBoat?: BoatDescription;
+  @Output() gridUpdateEvent = new EventEmitter<Boat[]>();
   @Output() boatSelectedIsPlacedEvent = new EventEmitter();
   cellHover = undefined as unknown as Coordinate;
   isHorizontalBoat = false;
 
-  boatOnGridList = [] as GridBoat[];
+  boatOnGridList = [] as Boat[];
 
   onSelectCell(cell: Coordinate) {
     if (this.selectedBoat === undefined || !this.cellCanBeSelected(cell)) {
@@ -29,10 +29,21 @@ export class GridPlacementComponent {
     }
 
     this.boatOnGridList.push({
-      xHead: this.getXBoatHead(cell, this.selectedBoat, this.isHorizontalBoat),
-      yHead: this.getYBoatHead(cell, this.selectedBoat, this.isHorizontalBoat),
-      boatModel: this.selectedBoat,
-      isHorizontal: this.isHorizontalBoat,
+      boatPosition: {
+        xHead: this.getXBoatHead(
+          cell,
+          this.selectedBoat,
+          this.isHorizontalBoat
+        ),
+        yHead: this.getYBoatHead(
+          cell,
+          this.selectedBoat,
+          this.isHorizontalBoat
+        ),
+        isHorizontal: this.isHorizontalBoat,
+      },
+      boatDescription: this.selectedBoat,
+      boatState: { isDestroyed: false },
     });
 
     this.boatSelectedIsPlacedEvent.emit();
@@ -87,12 +98,16 @@ export class GridPlacementComponent {
     for (let iGB = 0; iGB < this.boatOnGridList.length; iGB++) {
       const boat = this.boatOnGridList[iGB];
 
-      for (let i = 0; i < boat.boatModel.size; i++) {
-        const xBoat = boat.xHead - (boat.isHorizontal ? i : 0);
-        const yBoat = boat.yHead - (!boat.isHorizontal ? i : 0);
+      for (let i = 0; i < boat.boatDescription.size; i++) {
+        if (boat.boatPosition) {
+          const xBoat =
+            boat.boatPosition.xHead - (boat.boatPosition.isHorizontal ? i : 0);
+          const yBoat =
+            boat.boatPosition.yHead - (!boat.boatPosition.isHorizontal ? i : 0);
 
-        if (xBoat === cell.x && yBoat === cell.y) {
-          return true;
+          if (xBoat === cell.x && yBoat === cell.y) {
+            return true;
+          }
         }
       }
     }
@@ -100,12 +115,24 @@ export class GridPlacementComponent {
     return false;
   }
 
-  getXBoatHead(cell: Coordinate, boat: Boat, isHorizontalBoat: boolean) {
-    return isHorizontalBoat ? Math.max(cell.x, boat.size - 1) : cell.x;
+  getXBoatHead(
+    cell: Coordinate,
+    boatDescription: BoatDescription,
+    isHorizontalBoat: boolean
+  ) {
+    return isHorizontalBoat
+      ? Math.max(cell.x, boatDescription.size - 1)
+      : cell.x;
   }
 
-  getYBoatHead(cell: Coordinate, boat: Boat, isHorizontalBoat: boolean) {
-    return !isHorizontalBoat ? Math.max(cell.y, boat.size - 1) : cell.y;
+  getYBoatHead(
+    cell: Coordinate,
+    boatDescription: BoatDescription,
+    isHorizontalBoat: boolean
+  ) {
+    return !isHorizontalBoat
+      ? Math.max(cell.y, boatDescription.size - 1)
+      : cell.y;
   }
 
   cellIsInTheBoatRange(cell: Coordinate): boolean {

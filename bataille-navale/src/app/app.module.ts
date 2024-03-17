@@ -11,6 +11,8 @@ import { AttackGameComponent } from "./pages/attackGame/attackGame.component";
 import { OpponentBoardComponent } from "./pages/attackGame/opponentBoard/opponentBoard.component";
 import { AnimationWinComponent } from "./components/animation_win/animationWin.component";
 import { MyBoardComponent } from "./pages/attackGame/myBoard/myBoard.component";
+import { HttpClientModule } from "@angular/common/http";
+import { OpponentBoatsStatesComponent } from "./pages/attackGame/opponentBoatsStates/opponentBoatsStates.component";
 
 @NgModule({
   declarations: [
@@ -24,8 +26,9 @@ import { MyBoardComponent } from "./pages/attackGame/myBoard/myBoard.component";
     OpponentBoardComponent,
     AnimationWinComponent,
     MyBoardComponent,
+    OpponentBoatsStatesComponent,
   ],
-  imports: [BrowserModule, BrowserAnimationsModule],
+  imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
 })

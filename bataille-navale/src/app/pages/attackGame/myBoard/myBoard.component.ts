@@ -1,7 +1,8 @@
 import { Component } from "@angular/core";
 import { Subscription } from "rxjs";
-import { OpponentService } from "src/app/services/opponent/opponent.service";
-import { WebSocketService } from "src/app/services/websocket/WebSocketService";
+import { CellDto } from "src/app/services/game/dto/cell.dto";
+import { GameService } from "src/app/services/game/game.service";
+import { WebSocketService } from "src/app/services/websocket/webSocket.service";
 
 @Component({
   selector: "app-my-board",
@@ -12,9 +13,9 @@ export class MyBoardComponent {
   subscription: Subscription;
   message = "";
 
-  constructor(private opponentService: OpponentService) {
-    this.subscription = this.opponentService.mineRevealedCellsEvent.subscribe(
-      (data) => {
+  constructor(private gameService: GameService) {
+    this.subscription = this.gameService.mineRevealedCellsEvent.subscribe(
+      (data: any) => {
         this.message = data;
 
         console.log("myBoard :");

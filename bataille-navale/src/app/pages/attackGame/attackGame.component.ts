@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Output } from "@angular/core";
+import { Subscription } from "rxjs";
 import { StatusEndGame } from "src/app/locales/statusEndGame";
-import { WebSocketService } from "src/app/services/websocket/WebSocketService";
+import { GameService } from "src/app/services/game/game.service";
+import { WebSocketService } from "src/app/services/websocket/webSocket.service";
 
 @Component({
   selector: "app-attack-game",
@@ -9,10 +11,14 @@ import { WebSocketService } from "src/app/services/websocket/WebSocketService";
 })
 export class AttackGameComponent {
   @Output() onGameFinishedEvent = new EventEmitter<StatusEndGame>();
+  subscription: Subscription;
 
-  constructor() {}
-
-  onAllOpponentBoatDestroyed() {
-    this.onGameFinishedEvent.emit(StatusEndGame.Win);
+  constructor(private gameService: GameService) {
+    this.subscription = this.gameService.endGameEvent.subscribe(
+      (statusEndGame: StatusEndGame) => {
+        console.log(statusEndGame);
+        this.onGameFinishedEvent.emit(statusEndGame);
+      }
+    );
   }
 }
