@@ -16,7 +16,7 @@ import {
       transition(":enter", [
         style({ opacity: 0 }), // le style initial de l'élément
         animate("300ms", style({ opacity: 1 })), // l'état final de l'élément
-        animate("2s 500ms", style({ opacity: 0 })),
+        animate("1000ms 600ms", style({ opacity: 0 })),
       ]),
     ]),
   ],

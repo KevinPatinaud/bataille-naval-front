@@ -38,7 +38,7 @@ export class OpponentBoardComponent {
     );
   }
 
-  isCellOccupiedByOpponent(coordinate: Coordinate) {
+  isCellOccupied(coordinate: Coordinate) {
     return this.revealedCells.find(
       (cell: Cell) =>
         cell.coordinate.x === coordinate.x && cell.coordinate.y === coordinate.y

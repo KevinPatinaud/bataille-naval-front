@@ -160,20 +160,6 @@ export class GridPlacementComponent {
     }
 
     return false;
-    /*
-    return (
-      ((this.isHorizontalBoat &&
-        Math.max(this.cellHover.x, this.selectedBoat.size - 1) >= cell.x &&
-        Math.max(this.cellHover.x, this.selectedBoat.size - 1) <=
-          cell.x + this.selectedBoat.size - 1) ||
-        (!this.isHorizontalBoat && this.cellHover.x === cell.x)) &&
-      ((!this.isHorizontalBoat &&
-        Math.max(this.cellHover.y, this.selectedBoat.size - 1) >= cell.y &&
-        Math.max(this.cellHover.y, this.selectedBoat.size - 1) <=
-          cell.y + this.selectedBoat.size - 1) ||
-        (this.isHorizontalBoat && this.cellHover.y === cell.y))
-    );
-    */
   }
 
   cellIsNearABoat(cell: Coordinate) {

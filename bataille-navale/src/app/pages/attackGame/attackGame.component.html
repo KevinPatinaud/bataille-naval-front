@@ -1,5 +1,9 @@
-<div class="opponentBoard">
-<app-opponent-board />
-<app-opponent-boats-states/>
-<app-my-board />
+<div class="playerBoards">
+    <div class="opponentBoard">
+        <app-opponent-board />
+        <app-opponent-boats-states/>
+    </div>
+    <div class="myBoard">
+     <app-my-board [myBoats]="myBoats"/>
+    </div>
 </div>

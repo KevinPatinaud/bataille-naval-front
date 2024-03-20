@@ -22,6 +22,7 @@ export class GameService {
 
   idPlayer = "";
   idGame = "";
+  websocketConnector: any;
 
   constructor(
     private restService: RestService,
@@ -29,52 +30,65 @@ export class GameService {
   ) {
     const that = this;
 
-    restService.getText("new-game").subscribe((data: any) => {
+    restService.get("new-game").subscribe((data: any) => {
       console.log("id de la nouvelle partie :");
-      console.log(data);
-      that.idGame = data;
-      that.idPlayer = "player_1";
+      console.log(data.idGame);
+      that.idGame = data.idGame;
+      that.idPlayer = "PLAYER_1";
 
-      this.webSocketService.connect(function (frame: any) {
-        that.webSocketService.subscribe(
-          "/diffuse/" + that.idGame + "/revealedCells",
-          (message: any) => {
-            // récupère l'id du joueur dont la grille est révélée, la liste des cellules révélées et leur contenus
+      setInterval(() => {
+        if (!that.webSocketService.connectionIsWorking()) {
+          that.webSocketService.forceDeconnection();
+          that.initWebsocketConnection();
+        }
+      }, 3000);
+    });
+  }
 
-            const playerCells = JSON.parse(message.body) as PlayerCellsDto;
-            console.log(playerCells);
+  initWebsocketConnection() {
+    const that = this;
+    this.webSocketService.connect(function (frame: any) {
+      that.webSocketService.subscribe(
+        "/diffuse/" + that.idGame + "/revealedCells",
+        (message: any) => {
+          // récupère l'id du joueur dont la grille est révélée, la liste des cellules révélées et leur contenus
 
-            // si il s'agit de la grille adverse
+          const playerCells = JSON.parse(message.body) as PlayerCellsDto;
+          console.log(playerCells);
+
+          // si il s'agit de la grille adverse
+          if (playerCells.idPlayer !== that.idPlayer) {
             that.opponentRevealedCellsEvent.emit(
               CellMapper.fromDtos(playerCells.cells)
             );
-
-            // si il s'agit de ma grille
-            //        that.mineRevealedCellsEvent.emit(messageJs.cells);
-          }
-        );
-        that.webSocketService.subscribe(
-          "/diffuse/" + that.idGame + "/boatsStates",
-          (message: any) => {
-            const opponentBoats = JSON.parse(message.body);
-            console.log("boat states :");
-            console.log(opponentBoats);
-
-            that.opponentBoatsStatesUpdateEvent.emit(
-              BoatMapper.fromDtos(opponentBoats.boatsStates)
+          } else {
+            that.mineRevealedCellsEvent.emit(
+              CellMapper.fromDtos(playerCells.cells)
             );
           }
-        );
-        that.webSocketService.subscribe(
-          "/diffuse/" + that.idGame + "/endGame",
-          (message: any) => {
-            const messageJs = JSON.parse(message.body);
-            console.log("end game :");
-            console.log(messageJs);
-            that.endGameEvent.emit(StatusEndGame.Win);
-          }
-        );
-      });
+        }
+      );
+      that.webSocketService.subscribe(
+        "/diffuse/" + that.idGame + "/boatsStates",
+        (message: any) => {
+          const opponentBoats = JSON.parse(message.body);
+          console.log("boat states :");
+          console.log(opponentBoats);
+
+          that.opponentBoatsStatesUpdateEvent.emit(
+            BoatMapper.fromDtos(opponentBoats.boatsStates)
+          );
+        }
+      );
+      that.webSocketService.subscribe(
+        "/diffuse/" + that.idGame + "/endGame",
+        (message: any) => {
+          const messageJs = JSON.parse(message.body);
+          console.log("end game :");
+          console.log(messageJs);
+          that.endGameEvent.emit(StatusEndGame.Win);
+        }
+      );
     });
   }
 

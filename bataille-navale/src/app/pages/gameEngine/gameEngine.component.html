@@ -1,6 +1,6 @@
 <div class = "board">
 <app-placement *ngIf="displayPlacement" (onAllBoatAreDisposeEvent)="onAllBoatAreDispose($event)"/>
 <app-animation-lets-go *ngIf="displayLetsGoAnimation" (animationFinishedEvent)="onLetsGoAnimationFinished()"/>
-<app-attack-game *ngIf="displayAttackGame" (onGameFinishedEvent)="onGameFinished($event)"/>
+<app-attack-game *ngIf="displayAttackGame" [myBoats]="myBoats" (onGameFinishedEvent)="onGameFinished($event)"/>
 <app-animation-win *ngIf="displayWinAnimation" (animationFinishedEvent)="onAnimationWinFinished()"/>
 </div>

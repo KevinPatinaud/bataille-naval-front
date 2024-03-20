@@ -4,7 +4,7 @@ export enum BoatType {
   Croiseur = "croiseur",
   SousMarin_1 = "sous-marin-1",
   SousMarin_2 = "sous-marin-2",
-  Torpilleur = "tropilleur",
+  Torpilleur = "torpilleur",
 }
 
 export const PorteAvion = {

@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { Subscription } from "rxjs";
 import { StatusEndGame } from "src/app/locales/statusEndGame";
+import Boat from "src/app/models/boat";
 import { GameService } from "src/app/services/game/game.service";
 import { WebSocketService } from "src/app/services/websocket/webSocket.service";
 
@@ -10,6 +11,7 @@ import { WebSocketService } from "src/app/services/websocket/webSocket.service";
   styleUrls: ["./attackGame.component.css"],
 })
 export class AttackGameComponent {
+  @Input() myBoats: Boat[] | undefined;
   @Output() onGameFinishedEvent = new EventEmitter<StatusEndGame>();
   subscription: Subscription;
 

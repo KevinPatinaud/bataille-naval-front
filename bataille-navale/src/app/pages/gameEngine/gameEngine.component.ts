@@ -18,7 +18,7 @@ export class GameEngineComponent {
   /**/
   //____________________________________________________________________________________________________________
   //PARAMETRES NORMAUX
-  gridBoats = [] as Boat[];
+  myBoats = [] as Boat[];
   displayPlacement = true;
   displayLetsGoAnimation = false;
   displayAttackGame = false;
@@ -55,9 +55,9 @@ export class GameEngineComponent {
   displayWinAnimation = false;
   //____________________________________________________________________________________________________________/* */
 
-  onAllBoatAreDispose(gridBoats: Boat[]) {
+  onAllBoatAreDispose(myBoats: Boat[]) {
     setTimeout(() => {
-      this.gridBoats = gridBoats;
+      this.myBoats = myBoats;
       this.displayPlacement = false;
       this.displayLetsGoAnimation = true;
     }, 500);

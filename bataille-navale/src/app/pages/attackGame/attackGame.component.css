@@ -1,6 +1,17 @@
-.opponentBoard {
-  width: 40%;
+.playerBoards {
+  width: 92%;
   position: fixed;
-  left: 5%;
+  left: 4%;
   top: 20px;
+  display: flex;
+}
+
+.opponentBoard {
+  width: 48%;
+  padding-right: 2%;
+}
+
+.myBoard {
+  width: 48%;
+  padding-left: 2%;
 }
