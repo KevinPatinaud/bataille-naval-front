@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class RestService {
-  serverUrl = "http://localhost:8080/bataille-navale/";
+  serverUrl = "http://" + window.location.hostname + ":8080/bataille-navale/";
 
   constructor(private http: HttpClient) {}
 

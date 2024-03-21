@@ -74,10 +74,11 @@ export class GameService {
           const opponentBoats = JSON.parse(message.body);
           console.log("boat states :");
           console.log(opponentBoats);
-
-          that.opponentBoatsStatesUpdateEvent.emit(
-            BoatMapper.fromDtos(opponentBoats.boatsStates)
-          );
+          if (opponentBoats.idPlayer !== that.idPlayer) {
+            that.opponentBoatsStatesUpdateEvent.emit(
+              BoatMapper.fromDtos(opponentBoats.boatsStates)
+            );
+          }
         }
       );
       that.webSocketService.subscribe(
@@ -86,7 +87,11 @@ export class GameService {
           const messageJs = JSON.parse(message.body);
           console.log("end game :");
           console.log(messageJs);
-          that.endGameEvent.emit(StatusEndGame.Win);
+          if (that.idPlayer === messageJs.idPlayerWin) {
+            that.endGameEvent.emit(StatusEndGame.Win);
+          } else {
+            that.endGameEvent.emit(StatusEndGame.Loose);
+          }
         }
       );
     });

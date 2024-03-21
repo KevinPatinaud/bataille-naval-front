@@ -13,6 +13,7 @@ import { AnimationWinComponent } from "./components/animation_win/animationWin.c
 import { MyBoardComponent } from "./pages/attackGame/myBoard/myBoard.component";
 import { HttpClientModule } from "@angular/common/http";
 import { OpponentBoatsStatesComponent } from "./pages/attackGame/opponentBoatsStates/opponentBoatsStates.component";
+import { AnimationLoseComponent } from "./components/animation_lose/animationLose.component";
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { OpponentBoatsStatesComponent } from "./pages/attackGame/opponentBoatsSt
     AttackGameComponent,
     OpponentBoardComponent,
     AnimationWinComponent,
+    AnimationLoseComponent,
     MyBoardComponent,
     OpponentBoatsStatesComponent,
   ],

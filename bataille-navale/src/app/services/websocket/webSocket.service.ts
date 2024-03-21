@@ -7,7 +7,7 @@ import * as SockJS from "sockjs-client";
 })
 export class WebSocketService {
   stompClient: CompatClient;
-  serverUrl = "ws://localhost:8080/bataille-navale";
+  serverUrl = "ws://" + window.location.hostname + ":8080/bataille-navale";
 
   constructor() {
     this.stompClient = Stomp.over(new WebSocket(this.serverUrl));

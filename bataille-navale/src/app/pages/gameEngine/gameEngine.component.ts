@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+import { Location } from "@angular/common";
 import {
   Croiseur,
   PorteAvion,
@@ -8,6 +9,7 @@ import {
 } from "src/app/locales/boats";
 import { StatusEndGame } from "src/app/locales/statusEndGame";
 import Boat from "src/app/models/boat";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-game-engine",
@@ -15,45 +17,12 @@ import Boat from "src/app/models/boat";
   styleUrls: ["./gameEngine.component.css"],
 })
 export class GameEngineComponent {
-  /**/
-  //____________________________________________________________________________________________________________
-  //PARAMETRES NORMAUX
   myBoats = [] as Boat[];
   displayPlacement = true;
   displayLetsGoAnimation = false;
   displayAttackGame = false;
   displayWinAnimation = false;
-  /* */
-  // __________________________________________________________________________
-  /*
-  // Paramètres pour lancer directement le jeu
-  gridBoats = [
-    {
-      boatPosition: { xHead: 4, yHead: 4, isHorizontal: false },
-      boatDescription: PorteAvion,
-    },
-    {
-      boatPosition: { xHead: 4, yHead: 7, isHorizontal: true },
-      boatDescription: Croiseur,
-    },
-    {
-      boatPosition: { xHead: 8, yHead: 5, isHorizontal: true },
-      boatDescription: SousMarin_1,
-    },
-    {
-      boatPosition: { xHead: 1, yHead: 5, isHorizontal: false },
-      boatDescription: SousMarin_2,
-    },
-    {
-      boatPosition: { xHead: 6, yHead: 8, isHorizontal: false },
-      boatDescription: Torpilleur,
-    },
-  ] as Boat[];
-  displayPlacement = false;
-  displayLetsGoAnimation = false;
-  displayAttackGame = true;
-  displayWinAnimation = false;
-  //____________________________________________________________________________________________________________/* */
+  displayLoseAnimation = false;
 
   onAllBoatAreDispose(myBoats: Boat[]) {
     setTimeout(() => {
@@ -76,9 +45,12 @@ export class GameEngineComponent {
         this.displayWinAnimation = true;
       } else {
         console.log("Game engine : You lose");
+        this.displayLoseAnimation = true;
       }
     }, 500);
   }
 
-  onAnimationWinFinished() {}
+  onAnimationEndGameResultFinished() {
+    window.location.href = "/";
+  }
 }
