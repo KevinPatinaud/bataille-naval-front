@@ -6,13 +6,7 @@
   background-size: 100% 100%;
 }
 
-.column {
-  width: 10%;
-}
-
 .cell {
-  border: 1px solid black;
-  height: 70px;
   position: relative;
 }
 

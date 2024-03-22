@@ -34,18 +34,10 @@
   background-size: cover;
   opacity: 1;
 }
-.column {
-  width: 10%;
-}
-
-.cell {
-  border: 1px solid black;
-  height: 70px;
-}
 
 .infoArea {
-  position: fixed;
-  top: 760px;
+  position: absolute;
+  bottom: -80px;
   font-size: 32px;
   text-align: center;
   color: white;

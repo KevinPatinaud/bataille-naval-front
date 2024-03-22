@@ -4,3 +4,43 @@ body {
   height: auto;
   margin: 0;
 }
+
+.column {
+  width: 10%;
+}
+
+.cell {
+  border: 1px solid black;
+  height: 70px;
+}
+
+@media (max-height: 849px) {
+  .cell {
+    height: 65px;
+  }
+}
+@media (max-height: 799px) {
+  .cell {
+    height: 60px;
+  }
+}
+@media (max-height: 749px) {
+  .cell {
+    height: 55px;
+  }
+}
+@media (max-height: 699px) {
+  .cell {
+    height: 50px;
+  }
+}
+@media (max-height: 649px) {
+  .cell {
+    height: 45px;
+  }
+}
+@media (max-height: 599px) {
+  .cell {
+    height: 40px;
+  }
+}
