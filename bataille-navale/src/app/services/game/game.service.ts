@@ -28,13 +28,21 @@ export class GameService {
     private restService: RestService,
     private webSocketService: WebSocketService
   ) {
+    this.init();
+  }
+
+  init() {
     const that = this;
 
-    restService.get("new-game").subscribe((data: any) => {
+    that.restService.get("new-game").subscribe((data: any) => {
       console.log("id de la nouvelle partie :");
       console.log(data.idGame);
       that.idGame = data.idGame;
       that.idPlayer = "PLAYER_1";
+
+      if (that.webSocketService.connectionIsWorking()) {
+        that.webSocketService.forceDeconnection();
+      }
 
       setInterval(() => {
         if (!that.webSocketService.connectionIsWorking()) {
@@ -88,9 +96,9 @@ export class GameService {
           console.log("end game :");
           console.log(messageJs);
           if (that.idPlayer === messageJs.idPlayerWin) {
-            that.endGameEvent.emit(StatusEndGame.Win);
+            that.endGameEvent.emit(StatusEndGame.WIN);
           } else {
-            that.endGameEvent.emit(StatusEndGame.Loose);
+            that.endGameEvent.emit(StatusEndGame.LOSE);
           }
         }
       );

@@ -1,0 +1,9 @@
+<div  [class.boatImgSelected]="selected" 
+[class.boatAlreadyPositionned]="disable" class="boatImg"
+ [style.background-image]="'url(' + boatToDisplay?.image + ')'"
+ cdkDrag
+ #dragRef="cdkDrag"
+ [cdkDragDisabled]="disable"
+ [cdkDragFreeDragPosition]="freeDragPosition"
+ (cdkDragStarted)="dragStarted($event , dragRef )"
+ (cdkDragEnded)="dragEnded(dragRef)"></div>

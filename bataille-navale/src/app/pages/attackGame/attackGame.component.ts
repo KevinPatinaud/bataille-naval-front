@@ -3,7 +3,6 @@ import { Subscription } from "rxjs";
 import { StatusEndGame } from "src/app/locales/statusEndGame";
 import Boat from "src/app/models/boat";
 import { GameService } from "src/app/services/game/game.service";
-import { WebSocketService } from "src/app/services/websocket/webSocket.service";
 
 @Component({
   selector: "app-attack-game",

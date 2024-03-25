@@ -1,5 +1,5 @@
 export enum StatusEndGame {
-  Win,
-  Loose,
-  Null,
+  WIN,
+  LOSE,
+  NULL,
 }

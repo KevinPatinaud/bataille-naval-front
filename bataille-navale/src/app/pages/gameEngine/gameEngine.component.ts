@@ -10,6 +10,7 @@ import {
 import { StatusEndGame } from "src/app/locales/statusEndGame";
 import Boat from "src/app/models/boat";
 import { Router } from "@angular/router";
+import { GameService } from "src/app/services/game/game.service";
 
 @Component({
   selector: "app-game-engine",
@@ -23,6 +24,20 @@ export class GameEngineComponent {
   displayAttackGame = false;
   displayWinAnimation = false;
   displayLoseAnimation = false;
+
+  constructor(private gameService: GameService) {
+    this.init();
+  }
+
+  init() {
+    this.myBoats = [] as Boat[];
+    this.displayPlacement = true;
+    this.displayLetsGoAnimation = false;
+    this.displayAttackGame = false;
+    this.displayWinAnimation = false;
+    this.displayLoseAnimation = false;
+    this.gameService.init();
+  }
 
   onAllBoatAreDispose(myBoats: Boat[]) {
     setTimeout(() => {
@@ -40,7 +55,7 @@ export class GameEngineComponent {
   onGameFinished(statusEndGame: StatusEndGame) {
     setTimeout(() => {
       this.displayAttackGame = false;
-      if (statusEndGame === StatusEndGame.Win) {
+      if (statusEndGame === StatusEndGame.WIN) {
         console.log("Game engine : You win");
         this.displayWinAnimation = true;
       } else {
@@ -51,6 +66,6 @@ export class GameEngineComponent {
   }
 
   onAnimationEndGameResultFinished() {
-    window.location.href = "/";
+    this.init();
   }
 }

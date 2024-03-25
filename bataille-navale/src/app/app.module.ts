@@ -14,6 +14,8 @@ import { MyBoardComponent } from "./pages/attackGame/myBoard/myBoard.component";
 import { HttpClientModule } from "@angular/common/http";
 import { OpponentBoatsStatesComponent } from "./pages/attackGame/opponentBoatsStates/opponentBoatsStates.component";
 import { AnimationLoseComponent } from "./components/animation_lose/animationLose.component";
+import { CdkDrag } from "@angular/cdk/drag-drop";
+import { BoatSelectorImgComponent } from "./pages/placement/components/boatSelectorImg/boatSelectorImg.component";
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { AnimationLoseComponent } from "./components/animation_lose/animationLos
     GameEngineComponent,
     PlacementComponent,
     BoatSelectorComponent,
+    BoatSelectorImgComponent,
     GridPlacementComponent,
     AnimationLetsGoComponent,
     AttackGameComponent,
@@ -30,7 +33,7 @@ import { AnimationLoseComponent } from "./components/animation_lose/animationLos
     MyBoardComponent,
     OpponentBoatsStatesComponent,
   ],
-  imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule],
+  imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule, CdkDrag],
   providers: [],
   bootstrap: [AppComponent],
 })

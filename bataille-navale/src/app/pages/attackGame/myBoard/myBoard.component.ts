@@ -20,7 +20,6 @@ export class MyBoardComponent {
   constructor(private gameService: GameService) {
     this.subscription = this.gameService.mineRevealedCellsEvent.subscribe(
       (revealedCells: Cell[]) => {
-        console.log("myBoard :");
         this.revealedCells = revealedCells;
       }
     );
@@ -40,28 +39,31 @@ export class MyBoardComponent {
   isCellOccupied(coordinate: Coordinate) {
     if (!this.myBoats) return false;
 
-    return this.myBoats.find((boat: Boat) => {
-      if (boat.boatPosition) {
-        if (
-          boat.boatPosition.isHorizontal &&
-          coordinate.x >= boat.boatPosition.xHead &&
-          coordinate.x < boat.boatPosition.xHead + boat.boatDescription.size &&
-          coordinate.y === boat.boatPosition.yHead
-        ) {
-          return true;
+    return (
+      this.myBoats.filter((boat: Boat) => {
+        if (boat.boatPosition) {
+          if (
+            boat.boatPosition.isHorizontal &&
+            coordinate.x >= boat.boatPosition.xHead &&
+            coordinate.x <
+              boat.boatPosition.xHead + boat.boatDescription.size &&
+            coordinate.y === boat.boatPosition.yHead
+          ) {
+            return true;
+          }
+
+          if (
+            !boat.boatPosition.isHorizontal &&
+            coordinate.x === boat.boatPosition.xHead &&
+            coordinate.y >= boat.boatPosition.yHead &&
+            coordinate.y < boat.boatPosition.yHead + boat.boatDescription.size
+          ) {
+            return true;
+          }
         }
 
-        if (
-          !boat.boatPosition.isHorizontal &&
-          coordinate.x === boat.boatPosition.xHead &&
-          coordinate.y >= boat.boatPosition.yHead &&
-          coordinate.y < boat.boatPosition.yHead + boat.boatDescription.size
-        ) {
-          return true;
-        }
-      }
-
-      return false;
-    });
+        return false;
+      }).length >= 1
+    );
   }
 }

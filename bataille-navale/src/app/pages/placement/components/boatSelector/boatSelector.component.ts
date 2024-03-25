@@ -8,6 +8,7 @@ import {
 } from "src/app/locales/boats";
 import Boat from "src/app/models/boat";
 import { BoatDescription } from "src/app/models/boatDescription";
+import { CdkDrag, CdkDragStart, Point } from "@angular/cdk/drag-drop";
 
 @Component({
   selector: "app-boat-selector",
@@ -26,6 +27,9 @@ export class BoatSelectorComponent {
   SousMarin_2 = SousMarin_2;
   Torpilleur = Torpilleur;
 
+  freeDragPosition: Point = { x: 0, y: 0 };
+  private initialPosition: Point = { x: 0, y: 0 };
+
   onBoatSelected(boat: BoatDescription) {
     if (!this.isBoatOnTheGrid(boat)) {
       this.onBoatSelectedEvent.emit(boat);
@@ -41,5 +45,19 @@ export class BoatSelectorComponent {
         (b: Boat) => b.boatDescription.type === boat.type
       ).length === 1
     );
+  }
+
+  dragStarted(event: CdkDragStart) {
+    this.initialPosition = {
+      x: this.freeDragPosition.x,
+      y: this.freeDragPosition.y,
+    };
+  }
+
+  dragEnded() {
+    this.freeDragPosition = {
+      x: this.initialPosition.x,
+      y: this.initialPosition.y,
+    };
   }
 }

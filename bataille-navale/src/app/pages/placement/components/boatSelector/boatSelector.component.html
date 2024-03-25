@@ -2,22 +2,23 @@
 
 
     <div class="boatLine"  (click)="onBoatSelected(PorteAvion)">      
-        <img  [class.boatImgSelected]="selectedBoat?.type === PorteAvion.type" 
-        [class.boatAlreadyPositionned]="isBoatOnTheGrid(PorteAvion)" class="boatImg"
-         src={{PorteAvion.image}}>
+       <app-boat-selector-img (onBoatSelectedEvent)="onBoatSelected(PorteAvion)" [boatToDisplay]="PorteAvion" [selected]="selectedBoat?.type === PorteAvion.type" [disable]="isBoatOnTheGrid(PorteAvion)"/>
     </div>
-    <div class="boatLine" (click)="onBoatSelected(Croiseur)">
-        <img [class.boatImgSelected]="selectedBoat?.type === Croiseur.type" [class.boatAlreadyPositionned]="isBoatOnTheGrid(Croiseur)" class="boatImg" src={{Croiseur.image}}>
-    </div>
-    <div class="boatLine" (click)="onBoatSelected(SousMarin_1 )">
-        <img [class.boatImgSelected]="selectedBoat?.type === SousMarin_1.type" [class.boatAlreadyPositionned]="isBoatOnTheGrid(SousMarin_1)" class="boatImg" src={{SousMarin_1.image}}>
-    </div>
-    <div class="boatLine" (click)="onBoatSelected(SousMarin_2 )">
-        <img [class.boatImgSelected]="selectedBoat?.type === SousMarin_2.type" [class.boatAlreadyPositionned]="isBoatOnTheGrid(SousMarin_2)" class="boatImg" src={{SousMarin_2.image}}>
-    </div>
-    <div class="boatLine" (click)="onBoatSelected(Torpilleur)">
-        <img [class.boatImgSelected]="selectedBoat?.type === Torpilleur.type" [class.boatAlreadyPositionned]="isBoatOnTheGrid(Torpilleur)" class="boatImg" src={{Torpilleur.image}}>
-    </div>
-
+    
+    <div class="boatLine"  (click)="onBoatSelected(Croiseur)">      
+        <app-boat-selector-img (onBoatSelectedEvent)="onBoatSelected(Croiseur)" [boatToDisplay]="Croiseur" [selected]="selectedBoat?.type === Croiseur.type" [disable]="isBoatOnTheGrid(Croiseur)"/>
+     </div>
+     
+    <div class="boatLine"  (click)="onBoatSelected(SousMarin_1)">      
+        <app-boat-selector-img (onBoatSelectedEvent)="onBoatSelected(SousMarin_1)" [boatToDisplay]="SousMarin_1" [selected]="selectedBoat?.type === SousMarin_1.type" [disable]="isBoatOnTheGrid(SousMarin_1)"/>
+     </div>
+     
+    <div class="boatLine"  (click)="onBoatSelected(SousMarin_2)">      
+        <app-boat-selector-img (onBoatSelectedEvent)="onBoatSelected(SousMarin_2)" [boatToDisplay]="SousMarin_2" [selected]="selectedBoat?.type === SousMarin_2.type" [disable]="isBoatOnTheGrid(SousMarin_2)"/>
+     </div>
+     
+    <div class="boatLine"  (click)="onBoatSelected(Torpilleur)">      
+        <app-boat-selector-img (onBoatSelectedEvent)="onBoatSelected(Torpilleur)" [boatToDisplay]="Torpilleur" [selected]="selectedBoat?.type === Torpilleur.type" [disable]="isBoatOnTheGrid(Torpilleur)"/>
+     </div>
 
 </div>
