@@ -1,12 +1,10 @@
-<div >
-    <div class="grid" >
-        <div *ngFor="let xit of [].constructor(10) ; let x = index" class="column">
-            <div *ngFor="let yit of [].constructor(10) ; let y = index"  [id]="'myGrid_x' + x + '_y' + y" class="cell"  >
-            
-                <img *ngIf="! isCellRevealed({ x : x , y : y}) && isCellOccupied({ x : x , y : y})" class="imgCell boatCellHide" src="../../../../assets/images/construction.jpg"/>
-                <img *ngIf="! isCellRevealed({ x : x , y : y}) && ! isCellOccupied({ x : x , y : y})" class="imgCell cloudCell" src="../../../../assets/images/cloud.jpg"/>
-                <img *ngIf="isCellRevealed({ x : x , y : y}) && isCellOccupied({ x : x , y : y})" class="imgCell " src="../../../../assets/images/explosion.png"/>
-            </div>
+<div class="grid" >
+    <div *ngFor="let xit of [].constructor(10) ; let x = index" class="column">
+        <div *ngFor="let yit of [].constructor(10) ; let y = index"  [id]="'myGrid_x' + x + '_y' + y" class="cell"  >
+        
+            <img *ngIf="! isCellRevealed({ x : x , y : y}) && isCellOccupied({ x : x , y : y})" class="imgCell boatCellHide" src="../../../../assets/images/construction.jpg"/>
+            <img *ngIf="! isCellRevealed({ x : x , y : y}) && ! isCellOccupied({ x : x , y : y})" class="imgCell cloudCell" src="../../../../assets/images/cloud.jpg"/>
+            <img *ngIf="isCellRevealed({ x : x , y : y}) && isCellOccupied({ x : x , y : y})" class="imgCell " src="../../../../assets/images/explosion.png"/>
         </div>
     </div>
 </div>

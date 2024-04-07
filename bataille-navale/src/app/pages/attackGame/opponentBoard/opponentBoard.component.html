@@ -1,11 +1,9 @@
-<div class="opponentBoard">
-    <div class="grid" >
-        <div *ngFor="let xit of [].constructor(10) ; let x = index" class="column">
-            <div *ngFor="let yit of [].constructor(10) ; let y = index"  [id]="'opponentGrid_x' + x + '_y' + y" class="cell" (click)="onCellSelected({ x : x , y : y})" >
-            
-                <img *ngIf="! isCellRevealed({ x : x , y : y})" class="imgCell notRevealedCells" src="../../../../assets/images/cloud.jpg"/>
-                <img *ngIf="isCellRevealed({ x : x , y : y}) && isCellOccupied({ x : x , y : y})" class="imgCell " src="../../../../assets/images/explosion.png"/>
-            </div>
-        </div>
-    </div>
-</div>
+  <div class="grid" >
+      <div *ngFor="let xit of [].constructor(10) ; let x = index" class="column">
+          <div *ngFor="let yit of [].constructor(10) ; let y = index"  [id]="'opponentGrid_x' + x + '_y' + y" class="cell" (click)="onCellSelected({ x : x , y : y})" >
+          
+              <img *ngIf="! isCellRevealed({ x : x , y : y})" class="imgCell notRevealedCells" src="../../../../assets/images/cloud.jpg"/>
+              <img *ngIf="isCellRevealed({ x : x , y : y}) && isCellOccupied({ x : x , y : y})" class="imgCell " src="../../../../assets/images/explosion.png"/>
+          </div>
+      </div>
+  </div>
