@@ -25,7 +25,9 @@ export class GameEngineComponent {
   displayWinAnimation = false;
   displayLoseAnimation = false;
 
-  constructor(private gameService: GameService) {
+  constructor(private gameService: GameService) {}
+
+  ngOnInit() {
     this.init();
   }
 

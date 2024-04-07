@@ -32,6 +32,7 @@ export class OpponentBoardComponent {
     return (
       this.revealedCells.filter(
         (cell: Cell) =>
+          cell.isRevealed &&
           cell.coordinate.x === coordinate.x &&
           cell.coordinate.y === coordinate.y
       ).length >= 1
@@ -41,7 +42,9 @@ export class OpponentBoardComponent {
   isCellOccupied(coordinate: Coordinate) {
     return this.revealedCells.find(
       (cell: Cell) =>
-        cell.coordinate.x === coordinate.x && cell.coordinate.y === coordinate.y
+        cell.isOccupied &&
+        cell.coordinate.x === coordinate.x &&
+        cell.coordinate.y === coordinate.y
     )?.isOccupied;
   }
 }

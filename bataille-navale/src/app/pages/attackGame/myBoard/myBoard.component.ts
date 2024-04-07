@@ -30,6 +30,7 @@ export class MyBoardComponent {
     return (
       this.revealedCells.filter(
         (cell: Cell) =>
+          cell.isRevealed &&
           cell.coordinate.x === coordinate.x &&
           cell.coordinate.y === coordinate.y
       ).length >= 1

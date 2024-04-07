@@ -27,9 +27,7 @@ export class GameService {
   constructor(
     private restService: RestService,
     private webSocketService: WebSocketService
-  ) {
-    this.init();
-  }
+  ) {}
 
   init() {
     const that = this;
@@ -57,7 +55,7 @@ export class GameService {
     const that = this;
     this.webSocketService.connect(function (frame: any) {
       that.webSocketService.subscribe(
-        "/diffuse/" + that.idGame + "/revealedCells",
+        "/diffuse/" + that.idGame + "/grid",
         (message: any) => {
           // récupère l'id du joueur dont la grille est révélée, la liste des cellules révélées et leur contenus
 
@@ -77,7 +75,7 @@ export class GameService {
         }
       );
       that.webSocketService.subscribe(
-        "/diffuse/" + that.idGame + "/boatsStates",
+        "/diffuse/" + that.idGame + "/boats",
         (message: any) => {
           const opponentBoats = JSON.parse(message.body);
           console.log("boat states :");
