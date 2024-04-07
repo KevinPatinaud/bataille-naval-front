@@ -11,6 +11,7 @@ import { StatusEndGame } from "src/app/locales/statusEndGame";
 import Boat from "src/app/models/boat";
 import { Router } from "@angular/router";
 import { GameService } from "src/app/services/game/game.service";
+import { GameMode } from "src/app/locales/gameMode";
 
 @Component({
   selector: "app-game-engine",
@@ -19,7 +20,8 @@ import { GameService } from "src/app/services/game/game.service";
 })
 export class GameEngineComponent {
   myBoats = [] as Boat[];
-  displayPlacement = true;
+  displayMode = false;
+  displayPlacement = false;
   displayLetsGoAnimation = false;
   displayAttackGame = false;
   displayWinAnimation = false;
@@ -33,12 +35,18 @@ export class GameEngineComponent {
 
   init() {
     this.myBoats = [] as Boat[];
+    this.displayMode = false;
     this.displayPlacement = true;
     this.displayLetsGoAnimation = false;
     this.displayAttackGame = false;
     this.displayWinAnimation = false;
     this.displayLoseAnimation = false;
     this.gameService.init();
+  }
+
+  onGameModeChoosed(gameMode: GameMode) {
+    this.displayMode = false;
+    this.displayPlacement = true;
   }
 
   onAllBoatAreDispose(myBoats: Boat[]) {

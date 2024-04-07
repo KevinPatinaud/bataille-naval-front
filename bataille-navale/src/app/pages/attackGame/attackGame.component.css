@@ -2,16 +2,30 @@
   width: 92%;
   position: fixed;
   left: 4%;
-  top: 20px;
+  top: 5%;
+  height: 90%;
   display: flex;
 }
 
-.opponentBoard {
+.opponent {
   width: 48%;
+  height: 100%;
   padding-right: 2%;
 }
 
-.myBoard {
+.opponentBoard {
+  height: 90%;
+}
+
+.opponentBoatStates {
+  height: 10%;
+}
+.my {
   width: 48%;
+  height: 100%;
   padding-left: 2%;
+}
+
+.myBoard {
+  height: 90%;
 }
