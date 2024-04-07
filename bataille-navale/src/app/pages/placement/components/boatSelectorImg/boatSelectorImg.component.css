@@ -1,6 +1,8 @@
 .boatImg {
-  width: 120px;
-  height: 120px;
+  width: 74%;
+  height: 86%;
+  margin-left: 13%;
+  margin-top: 7%;
   border-radius: 20px;
   background-size: cover;
   background-position: center;
@@ -12,71 +14,12 @@
 }
 
 .boatImg:hover {
-  width: 135px;
-  height: 135px;
+  width: 86%;
+  height: 90%;
+  margin-left: 7%;
+  margin-top: 5%;
   border-radius: 20px;
   box-shadow: none;
-}
-
-@media (max-height: 849px) {
-  .boatImg {
-    width: 110px;
-    height: 110px;
-  }
-  .boatImg:hover {
-    width: 125px;
-    height: 125px;
-  }
-}
-@media (max-height: 799px) {
-  .boatImg {
-    width: 100px;
-    height: 100px;
-  }
-  .boatImg:hover {
-    width: 115px;
-    height: 115px;
-  }
-}
-@media (max-height: 749px) {
-  .boatImg {
-    width: 90px;
-    height: 90px;
-  }
-  .boatImg:hover {
-    width: 105px;
-    height: 105px;
-  }
-}
-@media (max-height: 699px) {
-  .boatImg {
-    width: 80px;
-    height: 80px;
-  }
-  .boatImg:hover {
-    width: 95px;
-    height: 95px;
-  }
-}
-@media (max-height: 649px) {
-  .boatImg {
-    width: 70px;
-    height: 70px;
-  }
-  .boatImg:hover {
-    width: 85px;
-    height: 85px;
-  }
-}
-@media (max-height: 599px) {
-  .boatImg {
-    width: 60px;
-    height: 60px;
-  }
-  .boatImg:hover {
-    width: 75px;
-    height: 75px;
-  }
 }
 
 .boatAlreadyPositionned {

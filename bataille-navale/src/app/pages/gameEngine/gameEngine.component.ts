@@ -20,7 +20,7 @@ import { GameMode } from "src/app/locales/gameMode";
 })
 export class GameEngineComponent {
   myBoats = [] as Boat[];
-  displayMode = true;
+  displayMode = false;
   displayPlacement = false;
   displayLetsGoAnimation = false;
   displayAttackGame = false;
@@ -35,8 +35,8 @@ export class GameEngineComponent {
 
   init() {
     this.myBoats = [] as Boat[];
-    this.displayMode = true;
-    this.displayPlacement = false;
+    this.displayMode = false;
+    this.displayPlacement = true;
     this.displayLetsGoAnimation = false;
     this.displayAttackGame = false;
     this.displayWinAnimation = false;
