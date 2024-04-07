@@ -16,11 +16,13 @@ import { OpponentBoatsStatesComponent } from "./pages/attackGame/opponentBoatsSt
 import { AnimationLoseComponent } from "./components/animation_lose/animationLose.component";
 import { CdkDrag } from "@angular/cdk/drag-drop";
 import { BoatSelectorImgComponent } from "./pages/placement/components/boatSelectorImg/boatSelectorImg.component";
+import { GameModeComponent } from "./pages/gameMode/gameMode.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     GameEngineComponent,
+    GameModeComponent,
     PlacementComponent,
     BoatSelectorComponent,
     BoatSelectorImgComponent,
