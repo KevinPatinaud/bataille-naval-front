@@ -3,25 +3,16 @@
   height: 81%;
 
   border-radius: 60px;
-  /*
-  background-image: url("../../../../../assets/images/selectionBox.jpg");
-  background-position: center;
-  background-size: 100% 100%;
-*/
-  /*
-  background-color: blueviolet;
 
-  */
-
-  background-color: #ddd; /* Couleur de fond */
-  border-left: 5px solid #bbb; /* Bordure gauche plus foncée */
-  border-top: 5px solid #eee; /* Bordure supérieure plus claire */
-  border-right: 5px solid #eee; /* Bordure droite plus claire */
-  border-bottom: 5px solid #bbb; /* Bordure inférieure plus foncée */
+  background-color: #ddd;
+  border-left: 5px solid #bbb;
+  border-top: 5px solid #eee;
+  border-right: 5px solid #eee;
+  border-bottom: 5px solid #bbb;
 
   position: fixed;
   right: 8%;
-  top: 5%;
+  top: 8%;
 
   padding-top: 2%;
   padding-bottom: 2%;

@@ -1,6 +1,6 @@
 .playerBoards {
   width: 92%;
-  position: fixed;
+  position: relative;
   left: 4%;
   top: 5%;
   height: 90%;
@@ -19,6 +19,10 @@
 
 .opponentBoatStates {
   height: 10%;
+}
+app-opponent-boats-states {
+  display: flex;
+  justify-content: center;
 }
 .my {
   width: 48%;

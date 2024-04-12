@@ -12,7 +12,7 @@
             (mouseenter)="onHoverCell( {x , y})"></div>
         </div>
     </div>
-    <div class="infoArea" >
+    <div class="infoArea" *ngIf="cellHoverCanBeSelected()">
      Appuyer sur la touche “espace”<br/>pour changer l'axe du bateau
     </div>
 </div>

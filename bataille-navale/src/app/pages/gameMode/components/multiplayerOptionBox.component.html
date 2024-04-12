@@ -1,0 +1,14 @@
+<div class="multiplayerOptionBox">
+    <button class="closeBtn" (click)="closeBox()">X</button>
+    <p class="description">
+    Donne l'identifiant suivant à ton adversaire :
+    <p class="descriptionIdGame">
+    {{ myIdGame }}
+    </p>
+    <p class="description">
+    Ou renseigne son identifiant :
+    </p>
+    <p class="description">
+        <input class="inputIdGame" type="text" [(ngModel)]="opponentIdGame" (ngModelChange)="updateOpponentIdGame($event)" appForceUppercase/>
+    </p>
+</div>

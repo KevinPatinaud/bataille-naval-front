@@ -1,5 +1,5 @@
 export enum GameMode {
-  IA,
-  HUMAN_INVIT,
-  HUMAN_JOIN,
+  SOLO,
+  MULTI_INVIT,
+  MULTI_JOIN,
 }
