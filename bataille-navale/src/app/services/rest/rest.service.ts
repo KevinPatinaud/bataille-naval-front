@@ -15,4 +15,8 @@ export class RestService {
   post(uri: string, data: any): Observable<any> {
     return this.http.post(uri, data);
   }
+
+  put(uri: string, data: any): Observable<any> {
+    return this.http.put(uri, data);
+  }
 }

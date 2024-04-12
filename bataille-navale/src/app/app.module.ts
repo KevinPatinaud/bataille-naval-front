@@ -22,11 +22,13 @@ import { InscriptionComponent } from "./pages/inscription/inscription.component"
 import { AppRoutingModule } from "./app-routing.module";
 import { FormsModule } from "@angular/forms";
 import { ForceUppercaseDirective } from "./directives/ForceUppercaseDirective";
+import { ForceUrlFormatDirective } from "./directives/ForceUrlFormatDirective";
 
 @NgModule({
   declarations: [
     AppComponent,
     ForceUppercaseDirective,
+    ForceUrlFormatDirective,
     InscriptionComponent,
     GameEngineComponent,
     GameModeComponent,

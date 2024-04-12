@@ -10,6 +10,7 @@ import { CellDto } from "./dto/cell.dto";
 import { PlayerCellsDto } from "./dto/playerCells.dto";
 import { Cell } from "src/app/models/cell";
 import CellMapper from "./mappers/Cell.mapper";
+import { GameMode } from "src/app/locales/gameMode";
 
 @Injectable({
   providedIn: "root",
@@ -20,7 +21,7 @@ export class GameService {
   opponentBoatsStatesUpdateEvent: EventEmitter<Boat[]> = new EventEmitter();
   endGameEvent: EventEmitter<StatusEndGame> = new EventEmitter();
 
-  serverUrl = "http://" + window.location.hostname + ":8080";
+  serverUrlREST = "http://" + window.location.hostname + ":8080";
 
   idGame = "";
   idPlayer = "";
@@ -31,37 +32,60 @@ export class GameService {
     private webSocketService: WebSocketService
   ) {}
 
-  getNewIdGame(): Observable<string> {
-    return this.restService.post(this.serverUrl + "/game/newid", {}).pipe(
+  isGameWaitingSecondPlayer(idGame: string) {
+    return this.restService.get(
+      this.serverUrlREST + "/game/" + idGame + "/iswaitingsecondplayer"
+    );
+  }
+
+  generateNewGame(gameMode: GameMode) {
+    const that = this;
+
+    const newGame$ = that.restService.post(this.serverUrlREST + "/game/", {
+      mode: gameMode,
+    });
+
+    newGame$.subscribe((data: any) => {
+      that.idGame = data.id;
+      that.idPlayer = "PLAYER_1";
+
+      this.launchWebsocketConnection();
+    });
+
+    return newGame$.pipe(
       map((data) => {
         return data.id;
       })
     );
   }
 
-  setIdGame(idGame: string) {
+  joinGame(idGame: string) {
     this.idGame = idGame;
-  }
+    this.idPlayer = "PLAYER_2";
 
-  initGame() {
     const that = this;
 
-    that.restService
-      .post(this.serverUrl + "/game/", { id: that.idGame, mode: "SOLO" })
-      .subscribe((data: any) => {
-        that.idPlayer = "PLAYER_1";
+    const newGame$ = that.restService.put(
+      this.serverUrlREST + "/game/" + idGame + "/join",
+      {}
+    );
 
-        if (that.webSocketService.connectionIsWorking()) {
-          that.webSocketService.forceDeconnection();
-        }
+    newGame$.subscribe((data: any) => {
+      this.launchWebsocketConnection();
+    });
+  }
 
-        setInterval(() => {
-          if (!that.webSocketService.connectionIsWorking()) {
-            that.webSocketService.forceDeconnection();
-            that.initWebsocketConnection(that.idGame);
-          }
-        }, 3000);
-      });
+  launchWebsocketConnection() {
+    if (this.webSocketService.connectionIsWorking()) {
+      this.webSocketService.forceDeconnection();
+    }
+
+    setInterval(() => {
+      if (!this.webSocketService.connectionIsWorking()) {
+        this.webSocketService.forceDeconnection();
+        this.initWebsocketConnection(this.idGame);
+      }
+    }, 3000);
   }
 
   initWebsocketConnection(idGame: string) {

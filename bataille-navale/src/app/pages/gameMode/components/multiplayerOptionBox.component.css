@@ -38,9 +38,9 @@
 }
 .closeBtn:hover,
 .closeBtn:focus {
-  background-color: #696969; /* Assombrir le bouton au survol ou focus */
+  background-color: #696969;
   box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1),
-    inset -1px -1px 3px rgba(255, 255, 255, 0.3), 2px 2px 5px rgba(0, 0, 0, 0.1); /* Effet de biseau plus profond au survol */
+    inset -1px -1px 3px rgba(255, 255, 255, 0.3), 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 .description {
   font-size: 28px;
