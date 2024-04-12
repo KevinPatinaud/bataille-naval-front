@@ -6,15 +6,13 @@ import { Observable } from "rxjs";
   providedIn: "root",
 })
 export class RestService {
-  serverUrl = "http://" + window.location.hostname + ":8080/bataille-navale/";
-
   constructor(private http: HttpClient) {}
 
   get(uri: string): Observable<any> {
-    return this.http.get(this.serverUrl + uri);
+    return this.http.get(uri);
   }
 
   post(uri: string, data: any): Observable<any> {
-    return this.http.post(this.serverUrl + uri, data);
+    return this.http.post(uri, data);
   }
 }

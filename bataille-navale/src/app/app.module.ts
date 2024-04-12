@@ -17,12 +17,20 @@ import { AnimationLoseComponent } from "./components/animation_lose/animationLos
 import { CdkDrag } from "@angular/cdk/drag-drop";
 import { BoatSelectorImgComponent } from "./pages/placement/components/boatSelectorImg/boatSelectorImg.component";
 import { GameModeComponent } from "./pages/gameMode/gameMode.component";
+import { MultiPlayerOptionBoxComponent } from "./pages/gameMode/components/multiplayerOptionBox.component";
+import { InscriptionComponent } from "./pages/inscription/inscription.component";
+import { AppRoutingModule } from "./app-routing.module";
+import { FormsModule } from "@angular/forms";
+import { ForceUppercaseDirective } from "./directives/ForceUppercaseDirective";
 
 @NgModule({
   declarations: [
     AppComponent,
+    ForceUppercaseDirective,
+    InscriptionComponent,
     GameEngineComponent,
     GameModeComponent,
+    MultiPlayerOptionBoxComponent,
     PlacementComponent,
     BoatSelectorComponent,
     BoatSelectorImgComponent,
@@ -35,7 +43,14 @@ import { GameModeComponent } from "./pages/gameMode/gameMode.component";
     MyBoardComponent,
     OpponentBoatsStatesComponent,
   ],
-  imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule, CdkDrag],
+  imports: [
+    AppRoutingModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    CdkDrag,
+    FormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

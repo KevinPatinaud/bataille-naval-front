@@ -1,7 +1,7 @@
 import { EventEmitter, Injectable } from "@angular/core";
 import { Coordinate } from "src/app/models/coordinate";
 import { WebSocketService } from "../websocket/webSocket.service";
-import { Subscription } from "rxjs";
+import { Observable, Subscription, map } from "rxjs";
 import { StatusEndGame } from "src/app/locales/statusEndGame";
 import { RestService } from "../rest/rest.service";
 import Boat from "src/app/models/boat";
@@ -20,8 +20,10 @@ export class GameService {
   opponentBoatsStatesUpdateEvent: EventEmitter<Boat[]> = new EventEmitter();
   endGameEvent: EventEmitter<StatusEndGame> = new EventEmitter();
 
-  idPlayer = "";
+  serverUrl = "http://" + window.location.hostname + ":8080";
+
   idGame = "";
+  idPlayer = "";
   websocketConnector: any;
 
   constructor(
@@ -29,33 +31,44 @@ export class GameService {
     private webSocketService: WebSocketService
   ) {}
 
-  init() {
-    const that = this;
-
-    that.restService.get("new-game").subscribe((data: any) => {
-      console.log("id de la nouvelle partie :");
-      console.log(data.idGame);
-      that.idGame = data.idGame;
-      that.idPlayer = "PLAYER_1";
-
-      if (that.webSocketService.connectionIsWorking()) {
-        that.webSocketService.forceDeconnection();
-      }
-
-      setInterval(() => {
-        if (!that.webSocketService.connectionIsWorking()) {
-          that.webSocketService.forceDeconnection();
-          that.initWebsocketConnection();
-        }
-      }, 3000);
-    });
+  getNewIdGame(): Observable<string> {
+    return this.restService.post(this.serverUrl + "/game/newid", {}).pipe(
+      map((data) => {
+        return data.id;
+      })
+    );
   }
 
-  initWebsocketConnection() {
+  setIdGame(idGame: string) {
+    this.idGame = idGame;
+  }
+
+  initGame() {
+    const that = this;
+
+    that.restService
+      .post(this.serverUrl + "/game/", { id: that.idGame, mode: "SOLO" })
+      .subscribe((data: any) => {
+        that.idPlayer = "PLAYER_1";
+
+        if (that.webSocketService.connectionIsWorking()) {
+          that.webSocketService.forceDeconnection();
+        }
+
+        setInterval(() => {
+          if (!that.webSocketService.connectionIsWorking()) {
+            that.webSocketService.forceDeconnection();
+            that.initWebsocketConnection(that.idGame);
+          }
+        }, 3000);
+      });
+  }
+
+  initWebsocketConnection(idGame: string) {
     const that = this;
     this.webSocketService.connect(function (frame: any) {
       that.webSocketService.subscribe(
-        "/diffuse/" + that.idGame + "/grid",
+        "/diffuse/" + idGame + "/grid",
         (message: any) => {
           // récupère l'id du joueur dont la grille est révélée, la liste des cellules révélées et leur contenus
 
@@ -75,7 +88,7 @@ export class GameService {
         }
       );
       that.webSocketService.subscribe(
-        "/diffuse/" + that.idGame + "/boats",
+        "/diffuse/" + idGame + "/boats",
         (message: any) => {
           const opponentBoats = JSON.parse(message.body);
           console.log("boat states :");
@@ -88,7 +101,7 @@ export class GameService {
         }
       );
       that.webSocketService.subscribe(
-        "/diffuse/" + that.idGame + "/endGame",
+        "/diffuse/" + idGame + "/endGame",
         (message: any) => {
           const messageJs = JSON.parse(message.body);
           console.log("end game :");
@@ -104,15 +117,17 @@ export class GameService {
   }
 
   submitBoatsPositions(boats: Boat[]) {
+    const that = this;
     this.webSocketService.send(
-      "/action/" + this.idGame + "/submit-boat/" + this.idPlayer,
+      "/action/" + that.idGame + "/submit-boat/" + this.idPlayer,
       JSON.stringify(BoatMapper.gridBoatstoDtos(boats))
     );
   }
 
   attackCell(coordinate: Coordinate) {
+    const that = this;
     this.webSocketService.send(
-      "/action/" + this.idGame + "/attack/" + this.idPlayer,
+      "/action/" + that.idGame + "/attack/" + this.idPlayer,
       JSON.stringify(coordinate)
     );
   }

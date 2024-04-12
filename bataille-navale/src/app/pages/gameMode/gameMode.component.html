@@ -1,5 +1,8 @@
 <div class="game_mode">
-    <div class="infoArea">Choisissez votre mode de jeu</div>
-    <button class="chose_mode" (click)="choseMode(GameMode.IA)">Solo</button>
-    <button class="chose_mode" (click)="choseMode(GameMode.HUMAN_INVIT)">Multijoueur</button>
+    <ng-container *ngIf="displaySoloOrMultiBtn">
+        <div class="infoArea">Choisissez votre mode de jeu</div>
+        <button class="chose_mode" (click)="choseModeSolo()">Solo</button>
+        <button class="chose_mode" (click)="choseModeMultiPlayer()">Multijoueur</button>
+    </ng-container>
+    <app-multi-player-option-box  *ngIf="displayMultiplayerOptionBox" (closeEvent)="closeMultiPlayerBox()" />
 </div>

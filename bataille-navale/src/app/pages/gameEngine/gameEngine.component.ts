@@ -27,21 +27,18 @@ export class GameEngineComponent {
   displayWinAnimation = false;
   displayLoseAnimation = false;
 
-  constructor(private gameService: GameService) {}
-
   ngOnInit() {
     this.init();
   }
 
   init() {
     this.myBoats = [] as Boat[];
-    this.displayMode = false;
-    this.displayPlacement = true;
+    this.displayMode = true;
+    this.displayPlacement = false;
     this.displayLetsGoAnimation = false;
     this.displayAttackGame = false;
     this.displayWinAnimation = false;
     this.displayLoseAnimation = false;
-    this.gameService.init();
   }
 
   onGameModeChoosed(gameMode: GameMode) {
