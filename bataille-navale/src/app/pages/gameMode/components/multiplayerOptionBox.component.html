@@ -11,5 +11,8 @@
     <p class="description">
         <input class="inputIdGame" type="text" [ngModel]="opponentIdGame" (ngModelChange)="updateOpponentIdGame($event)" />
     </p>
+    <p class="error" *ngIf="errorMessage.length >= 1">
+        {{ errorMessage }}
+    </p>
 
 </div>

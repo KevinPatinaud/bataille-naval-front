@@ -42,11 +42,10 @@ export class OpponentBoatsStatesComponent {
   ] as Boat[];
 
   constructor(private gameService: GameService) {
-    this.subscription =
-      this.gameService.opponentBoatsStatesUpdateEvent.subscribe(
-        (opponentBoats: Boat[]) => {
-          this.opponentBoats = opponentBoats;
-        }
-      );
+    this.subscription = this.gameService.opponentBoatsUpdateEvent.subscribe(
+      (opponentBoats: Boat[]) => {
+        this.opponentBoats = opponentBoats;
+      }
+    );
   }
 }

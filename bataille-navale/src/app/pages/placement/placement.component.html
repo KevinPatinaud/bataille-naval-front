@@ -1,3 +1,9 @@
 <app-grid-placement [selectedBoat]="selectedBoat" (gridUpdateEvent)="onGridUpdate($event)" (boatSelectedIsPlacedEvent)="onBoatSelectedIsPlacedOnTheGrid()"/>
 <app-boat-selector [selectedBoat]="selectedBoat" [onGridBoats]="onGridBoats" (onBoatSelectedEvent)="onBoatSelected($event)" (onLastBoatSelectedEvent)="onLastBoatSelected()"/>
 
+<ng-container  *ngIf="isWaitingForOpponentPositionHisBoat">
+<div class="waitCover" ></div>
+<div class="waitBox" >
+    <img class="waitMessage" src="/assets/images/wait.jpg" />
+</div>
+</ng-container>

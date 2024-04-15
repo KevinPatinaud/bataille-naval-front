@@ -4,5 +4,5 @@
         <button class="chose_mode" (click)="choseModeSolo()">Solo</button>
         <button class="chose_mode" (click)="choseModeMultiPlayer()">Multijoueur</button>
     </ng-container>
-    <app-multi-player-option-box  *ngIf="displayMultiplayerOptionBox" (closeEvent)="closeMultiPlayerBox()" (joinGameEvent)="joinGame($event)" />
+    <app-multi-player-option-box  *ngIf="displayMultiplayerOptionBox" (closeEvent)="closeMultiPlayerBox()" (opponentJoinGameEvent)="allPlayerReady($event)" (joinOpponentGameEvent)="allPlayerReady($event)" />
 </div>

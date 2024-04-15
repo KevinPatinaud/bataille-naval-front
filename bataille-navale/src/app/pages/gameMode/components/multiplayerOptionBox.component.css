@@ -56,6 +56,12 @@
   text-shadow: #000 3px 0 10px;
   font-weight: bold;
 }
+.error {
+  font-size: 28px;
+  text-align: center;
+  color: red;
+  text-shadow: #000 2px 0 3px;
+}
 .inputIdGame {
   padding: 10px 20px;
   font-size: 16px;

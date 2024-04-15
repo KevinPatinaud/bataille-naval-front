@@ -16,21 +16,38 @@ import { GameMode } from "src/app/locales/gameMode";
   providedIn: "root",
 })
 export class GameService {
-  opponentRevealedCellsEvent: EventEmitter<Cell[]> = new EventEmitter();
-  mineRevealedCellsEvent: EventEmitter<Cell[]> = new EventEmitter();
-  opponentBoatsStatesUpdateEvent: EventEmitter<Boat[]> = new EventEmitter();
+  playerTurnUpdateEvent: EventEmitter<string> = new EventEmitter();
+  opponentCellsUpdateEvent: EventEmitter<Cell[]> = new EventEmitter();
+  mineCellsUpdateEvent: EventEmitter<Cell[]> = new EventEmitter();
+  opponentBoatsUpdateEvent: EventEmitter<Boat[]> = new EventEmitter();
+  mineBoatsUpdateEvent: EventEmitter<Boat[]> = new EventEmitter();
   endGameEvent: EventEmitter<StatusEndGame> = new EventEmitter();
+  opponentJoinGameEvent: EventEmitter<string> = new EventEmitter();
+  opponentPositionBoatDoneEvent: EventEmitter<string> = new EventEmitter();
 
   serverUrlREST = "http://" + window.location.hostname + ":8080";
 
   idGame = "";
   idPlayer = "";
+  gameMode: GameMode | any;
   websocketConnector: any;
 
   constructor(
     private restService: RestService,
     private webSocketService: WebSocketService
   ) {}
+
+  getIdGame() {
+    return this.idGame;
+  }
+
+  getIdPlayer() {
+    return this.idPlayer;
+  }
+
+  getGameMode() {
+    return this.gameMode;
+  }
 
   isGameWaitingSecondPlayer(idGame: string) {
     return this.restService.get(
@@ -39,22 +56,22 @@ export class GameService {
   }
 
   generateNewGame(gameMode: GameMode) {
+    console.log("generateNewGame()");
     const that = this;
+
+    this.gameMode = gameMode;
 
     const newGame$ = that.restService.post(this.serverUrlREST + "/game/", {
       mode: gameMode,
     });
 
-    newGame$.subscribe((data: any) => {
-      that.idGame = data.id;
-      that.idPlayer = "PLAYER_1";
-
-      this.launchWebsocketConnection();
-    });
-
     return newGame$.pipe(
-      map((data) => {
-        return data.id;
+      map((game) => {
+        that.idGame = game.id;
+        console.log(that.idGame);
+        that.idPlayer = "PLAYER_1";
+        this.launchWebsocketConnection();
+        return game.id;
       })
     );
   }
@@ -62,6 +79,7 @@ export class GameService {
   joinGame(idGame: string) {
     this.idGame = idGame;
     this.idPlayer = "PLAYER_2";
+    this.gameMode = GameMode.MULTI;
 
     const that = this;
 
@@ -89,54 +107,83 @@ export class GameService {
   }
 
   initWebsocketConnection(idGame: string) {
+    console.log("initWebsocketConnection()");
     const that = this;
     this.webSocketService.connect(function (frame: any) {
       that.webSocketService.subscribe(
-        "/diffuse/" + idGame + "/grid",
+        "/diffuse/" + idGame + "/gameState",
         (message: any) => {
-          // récupère l'id du joueur dont la grille est révélée, la liste des cellules révélées et leur contenus
+          const gameState = JSON.parse(message.body);
+          console.log(gameState);
 
-          const playerCells = JSON.parse(message.body) as PlayerCellsDto;
-          console.log(playerCells);
+          that.playerTurnUpdateEvent.emit(gameState.idPlayerTurn);
 
-          // si il s'agit de la grille adverse
-          if (playerCells.idPlayer !== that.idPlayer) {
-            that.opponentRevealedCellsEvent.emit(
-              CellMapper.fromDtos(playerCells.cells)
-            );
-          } else {
-            that.mineRevealedCellsEvent.emit(
-              CellMapper.fromDtos(playerCells.cells)
-            );
-          }
+          const me =
+            that.idPlayer === "PLAYER_1"
+              ? gameState.player1
+              : gameState.player2;
+
+          const opponent =
+            that.idPlayer === "PLAYER_1"
+              ? gameState.player2
+              : gameState.player1;
+
+          that.mineBoatsUpdateEvent.emit(BoatMapper.fromDtos(me.boatsStates));
+          that.mineCellsUpdateEvent.emit(CellMapper.fromDtos(me.cells));
+
+          that.opponentBoatsUpdateEvent.emit(
+            BoatMapper.fromDtos(opponent.boatsStates)
+          );
+          that.opponentCellsUpdateEvent.emit(
+            CellMapper.fromDtos(opponent.cells)
+          );
         }
       );
-      that.webSocketService.subscribe(
-        "/diffuse/" + idGame + "/boats",
-        (message: any) => {
-          const opponentBoats = JSON.parse(message.body);
-          console.log("boat states :");
-          console.log(opponentBoats);
-          if (opponentBoats.idPlayer !== that.idPlayer) {
-            that.opponentBoatsStatesUpdateEvent.emit(
-              BoatMapper.fromDtos(opponentBoats.boatsStates)
-            );
-          }
-        }
-      );
+
       that.webSocketService.subscribe(
         "/diffuse/" + idGame + "/endGame",
         (message: any) => {
-          const messageJs = JSON.parse(message.body);
+          const endGameState = JSON.parse(message.body);
           console.log("end game :");
-          console.log(messageJs);
-          if (that.idPlayer === messageJs.idPlayerWin) {
+          console.log(endGameState);
+          if (endGameState.idPlayerWin === that.idPlayer) {
             that.endGameEvent.emit(StatusEndGame.WIN);
           } else {
             that.endGameEvent.emit(StatusEndGame.LOSE);
           }
         }
       );
+
+      if (that.gameMode === GameMode.MULTI) {
+        that.webSocketService.subscribe(
+          "/diffuse/" + idGame + "/playerJoin",
+          (message: any) => {
+            console.log("Le second joueur vient de rejoindre la partie");
+            console.log(message);
+            that.opponentJoinGameEvent.emit(message);
+          }
+        );
+        that.webSocketService.subscribe(
+          "/diffuse/" + idGame + "/playerPositionBoats",
+          (message: any) => {
+            console.log(message.body);
+
+            const idPlayerPositionBoat = (message.body as string).replaceAll(
+              '"',
+              ""
+            );
+
+            if (!idPlayerPositionBoat.includes(that.idPlayer)) {
+              console.log(
+                "Le joueur advserse : " +
+                  idPlayerPositionBoat +
+                  " vient de positionner ses bateaux"
+              );
+              that.opponentPositionBoatDoneEvent.emit(idPlayerPositionBoat);
+            }
+          }
+        );
+      }
     });
   }
 

@@ -56,7 +56,6 @@ export class GridPlacementComponent {
 
   onLeaveGrid() {
     this.cellHover = undefined as unknown as Coordinate;
-    console.log("onLeaveGrid");
   }
 
   cellHoverCanBeSelected(): boolean {

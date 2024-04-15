@@ -27,6 +27,8 @@ export class GameEngineComponent {
   displayWinAnimation = false;
   displayLoseAnimation = false;
 
+  opponentHavePositionHisBoats = false;
+
   ngOnInit() {
     this.init();
   }
@@ -39,6 +41,8 @@ export class GameEngineComponent {
     this.displayAttackGame = false;
     this.displayWinAnimation = false;
     this.displayLoseAnimation = false;
+
+    this.opponentHavePositionHisBoats = false;
   }
 
   onGameModeChoosed(gameMode: GameMode) {

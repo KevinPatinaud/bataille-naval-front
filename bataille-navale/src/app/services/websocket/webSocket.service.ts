@@ -34,6 +34,8 @@ export class WebSocketService {
     console.log("this.stompClient.connected");
     console.log(this.stompClient.connected);
 
+    console.log("web socket send() : " + uri);
+
     this.stompClient.send(uri, {}, data);
   }
 }

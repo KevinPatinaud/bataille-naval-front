@@ -18,7 +18,7 @@ export class MyBoardComponent {
   @Input() myBoats: Boat[] | undefined;
 
   constructor(private gameService: GameService) {
-    this.subscription = this.gameService.mineRevealedCellsEvent.subscribe(
+    this.subscription = this.gameService.mineCellsUpdateEvent.subscribe(
       (revealedCells: Cell[]) => {
         this.revealedCells = revealedCells;
       }

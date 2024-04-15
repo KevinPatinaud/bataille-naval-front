@@ -11,18 +11,27 @@ import { GameMode } from "src/app/locales/gameMode";
 })
 export class MultiPlayerOptionBoxComponent {
   @Output() closeEvent = new EventEmitter();
-  @Output() joinGameEvent = new EventEmitter<string>();
+  @Output() opponentJoinGameEvent = new EventEmitter<string>();
+  @Output() joinOpponentGameEvent = new EventEmitter<string>();
+
   formKey = 0;
   myIdGame: string = "";
   opponentIdGame: String = "";
+
+  errorMessage = "";
 
   constructor(private gameService: GameService) {}
 
   ngOnInit() {
     const that = this;
+
     this.gameService
       .generateNewGame(GameMode.MULTI)
       .subscribe((idGame: string) => (that.myIdGame = idGame));
+
+    this.gameService.opponentJoinGameEvent.subscribe((idOpponent: string) => {
+      that.opponentJoinGameEvent.emit(that.myIdGame);
+    });
   }
 
   closeBox() {
@@ -40,7 +49,11 @@ export class MultiPlayerOptionBoxComponent {
       this.opponentIdGame = opponentIdGame;
     });
 
-    if (value && value.length > 6) {
+    if (this.myIdGame === this.opponentIdGame) {
+      this.errorMessage = "Vous ne pouvez pas utiliser votre propre id";
+    }
+
+    if (value && value.length > 6 && this.myIdGame !== this.opponentIdGame) {
       const that = this;
       this.gameService
         .isGameWaitingSecondPlayer(opponentIdGame)
@@ -49,7 +62,7 @@ export class MultiPlayerOptionBoxComponent {
 
           if (isGameWaitingForJoinning) {
             that.gameService.joinGame(opponentIdGame);
-            that.joinGameEvent.emit(opponentIdGame);
+            that.joinOpponentGameEvent.emit(opponentIdGame);
           }
         });
     }

@@ -17,8 +17,11 @@ export class GameModeComponent {
   constructor(private gameService: GameService) {}
 
   choseModeSolo() {
-    this.gameService.generateNewGame(GameMode.SOLO);
-    this.onGameModeChoosed.emit(GameMode.SOLO);
+    this.gameService
+      .generateNewGame(GameMode.SOLO)
+      .subscribe((idOpponent: string) =>
+        this.onGameModeChoosed.emit(GameMode.SOLO)
+      );
   }
 
   choseModeMultiPlayer() {
@@ -31,7 +34,7 @@ export class GameModeComponent {
     this.displayMultiplayerOptionBox = false;
   }
 
-  joinGame(idGame: string) {
+  allPlayerReady(idGame: string) {
     console.log("partie multi : " + idGame);
     this.onGameModeChoosed.emit(GameMode.MULTI);
   }
