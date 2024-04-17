@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable } from "@angular/core";
+import { EventEmitter, Inject, Injectable } from "@angular/core";
 import { Coordinate } from "src/app/models/coordinate";
 import { WebSocketService } from "../websocket/webSocket.service";
 import { Observable, Subscription, map } from "rxjs";
@@ -11,6 +11,7 @@ import { PlayerCellsDto } from "./dto/playerCells.dto";
 import { Cell } from "src/app/models/cell";
 import CellMapper from "./mappers/Cell.mapper";
 import { GameMode } from "src/app/locales/gameMode";
+import { API_BASE_URL_TOKEN } from "src/app/app.module";
 
 @Injectable({
   providedIn: "root",
@@ -25,7 +26,7 @@ export class GameService {
   opponentJoinGameEvent: EventEmitter<string> = new EventEmitter();
   opponentPositionBoatDoneEvent: EventEmitter<string> = new EventEmitter();
 
-  serverUrlREST = "http://" + window.location.hostname + ":8080";
+
 
   idGame = "";
   idPlayer = "";
@@ -33,6 +34,7 @@ export class GameService {
   websocketConnector: any;
 
   constructor(
+    @Inject(API_BASE_URL_TOKEN) public apiBaseURL: string,
     private restService: RestService,
     private webSocketService: WebSocketService
   ) {}
@@ -51,7 +53,7 @@ export class GameService {
 
   isGameWaitingSecondPlayer(idGame: string) {
     return this.restService.get(
-      this.serverUrlREST + "/game/" + idGame + "/iswaitingsecondplayer"
+      this.apiBaseURL + "/game/" + idGame + "/iswaitingsecondplayer"
     );
   }
 
@@ -61,7 +63,7 @@ export class GameService {
 
     this.gameMode = gameMode;
 
-    const newGame$ = that.restService.post(this.serverUrlREST + "/game/", {
+    const newGame$ = that.restService.post(this.apiBaseURL + "/game/", {
       mode: gameMode,
     });
 
@@ -84,7 +86,7 @@ export class GameService {
     const that = this;
 
     const newGame$ = that.restService.put(
-      this.serverUrlREST + "/game/" + idGame + "/join",
+      this.apiBaseURL + "/game/" + idGame + "/join",
       {}
     );
 

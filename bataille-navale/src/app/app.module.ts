@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { InjectionToken, NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { AppComponent } from "./app.component";
 import { GameEngineComponent } from "./pages/gameEngine/gameEngine.component";
@@ -24,6 +24,9 @@ import { FormsModule } from "@angular/forms";
 import { ForceUppercaseDirective } from "./directives/ForceUppercaseDirective";
 import { ForceUrlFormatDirective } from "./directives/ForceUrlFormatDirective";
 import { IdGameFormatDirective } from "./directives/IdGameFormatDirective";
+
+
+export const API_BASE_URL_TOKEN = new InjectionToken<string>("api base url");
 
 @NgModule({
   declarations: [
@@ -55,7 +58,9 @@ import { IdGameFormatDirective } from "./directives/IdGameFormatDirective";
     CdkDrag,
     FormsModule,
   ],
-  providers: [],
+  providers: [
+    { provide: API_BASE_URL_TOKEN, useValue: "http://" + window.location.hostname + ":8080" }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
