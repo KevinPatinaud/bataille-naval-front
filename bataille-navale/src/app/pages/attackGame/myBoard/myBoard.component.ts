@@ -14,30 +14,20 @@ import { WebSocketService } from "src/app/services/websocket/webSocket.service";
 })
 export class MyBoardComponent {
   subscription: Subscription;
-  revealedCells = [] as Cell[];
+  cells :Cell[][] = Array.from({ length: 10 }, () => Array(10).fill({isRevealed : false} as Cell));
   @Input() myBoats: Boat[] | undefined;
 
   constructor(private gameService: GameService) {
     this.subscription = this.gameService.mineCellsUpdateEvent.subscribe(
-      (revealedCells: Cell[]) => {
-        this.revealedCells = revealedCells;
+      (cells: Cell[][]) => {
+        this.cells = cells;
       }
     );
   }
   ngOnInit() {}
 
-  isCellRevealed(coordinate: Coordinate) {
-    return (
-      this.revealedCells.filter(
-        (cell: Cell) =>
-          cell.isRevealed &&
-          cell.coordinate.x === coordinate.x &&
-          cell.coordinate.y === coordinate.y
-      ).length >= 1
-    );
-  }
 
-  isCellOccupied(coordinate: Coordinate) {
+  isCellOccupied(x : number , y : number) {
     if (!this.myBoats) return false;
 
     return (
@@ -45,19 +35,18 @@ export class MyBoardComponent {
         if (boat.boatPosition) {
           if (
             boat.boatPosition.isHorizontal &&
-            coordinate.x >= boat.boatPosition.xHead &&
-            coordinate.x <
-              boat.boatPosition.xHead + boat.boatDescription.size &&
-            coordinate.y === boat.boatPosition.yHead
+            x >= boat.boatPosition.xHead &&
+            x < boat.boatPosition.xHead + boat.boatDescription.size &&
+            y === boat.boatPosition.yHead
           ) {
             return true;
           }
 
           if (
             !boat.boatPosition.isHorizontal &&
-            coordinate.x === boat.boatPosition.xHead &&
-            coordinate.y >= boat.boatPosition.yHead &&
-            coordinate.y < boat.boatPosition.yHead + boat.boatDescription.size
+            x === boat.boatPosition.xHead &&
+            y >= boat.boatPosition.yHead &&
+            y < boat.boatPosition.yHead + boat.boatDescription.size
           ) {
             return true;
           }

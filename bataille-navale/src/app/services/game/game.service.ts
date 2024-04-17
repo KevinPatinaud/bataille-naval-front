@@ -17,8 +17,8 @@ import { GameMode } from "src/app/locales/gameMode";
 })
 export class GameService {
   playerTurnUpdateEvent: EventEmitter<string> = new EventEmitter();
-  opponentCellsUpdateEvent: EventEmitter<Cell[]> = new EventEmitter();
-  mineCellsUpdateEvent: EventEmitter<Cell[]> = new EventEmitter();
+  opponentCellsUpdateEvent: EventEmitter<Cell[][]> = new EventEmitter();
+  mineCellsUpdateEvent: EventEmitter<Cell[][]> = new EventEmitter();
   opponentBoatsUpdateEvent: EventEmitter<Boat[]> = new EventEmitter();
   mineBoatsUpdateEvent: EventEmitter<Boat[]> = new EventEmitter();
   endGameEvent: EventEmitter<StatusEndGame> = new EventEmitter();
@@ -200,6 +200,14 @@ export class GameService {
     this.webSocketService.send(
       "/action/" + that.idGame + "/attack/" + this.idPlayer,
       JSON.stringify(coordinate)
+    );
+  }
+
+  
+  askGameState() {
+    const that = this;
+    this.webSocketService.send(
+      "/action/" + that.idGame + "/gameState" , undefined
     );
   }
 }
