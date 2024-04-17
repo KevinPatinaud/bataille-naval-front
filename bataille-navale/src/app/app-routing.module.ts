@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
-import { GameEngineComponent } from "./pages/gameEngine/gameEngine.component";
-import { InscriptionComponent } from "./pages/inscription/inscription.component";
 import { RouterModule, Routes } from "@angular/router";
+import { GameEngineComponent } from "./module/game/pages/gameEngine/gameEngine.component";
+import { InscriptionComponent } from "./module/game/pages/inscription/inscription.component";
 
 const routes: Routes = [
   { path: "game", component: GameEngineComponent },
