@@ -1,6 +1,8 @@
-<div  [class.boatImgSelected]="selected" 
+<div  
+[class.boatImgSelected]="selected" 
 [class.boatAlreadyPositionned]="disable" class="boatImg"
  [style.background-image]="'url(' + boatToDisplay?.image + ')'"
+ [style.display]="(selected && isMouseOverTheGrid) ? 'none' : 'block'"
  cdkDrag
  #dragRef="cdkDrag"
  [cdkDragDisabled]="disable"

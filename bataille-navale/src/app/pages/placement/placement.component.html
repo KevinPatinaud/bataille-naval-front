@@ -1,5 +1,5 @@
-<app-grid-placement [selectedBoat]="selectedBoat" (gridUpdateEvent)="onGridUpdate($event)" (boatSelectedIsPlacedEvent)="onBoatSelectedIsPlacedOnTheGrid()"/>
-<app-boat-selector [selectedBoat]="selectedBoat" [onGridBoats]="onGridBoats" (onBoatSelectedEvent)="onBoatSelected($event)" (onLastBoatSelectedEvent)="onLastBoatSelected()"/>
+<app-grid-placement [selectedBoat]="selectedBoat" (gridUpdateEvent)="onGridUpdate($event)" (mouseEnterInTheGrid)="mouseEnterInTheGrid()" (mouseExitTheGrid)="mouseExitTheGrid()" />
+<app-boat-selector [selectedBoat]="selectedBoat" [isMouseOverTheGrid]="isMouseOverTheGrid"  [onGridBoats]="onGridBoats" (onBoatSelectedEvent)="onBoatSelected($event)" (onLastBoatSelectedEvent)="onLastBoatSelected()"/>
 
 <ng-container  *ngIf="isWaitingForOpponentPositionHisBoat">
 <div class="waitCover" ></div>

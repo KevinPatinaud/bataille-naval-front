@@ -18,6 +18,7 @@ export class PlacementComponent {
   isAllBoatsArePositionned = false;
   isOpponentHavePositionHisBoat = false;
   isWaitingForOpponentPositionHisBoat = false;
+  isMouseOverTheGrid = false;
 
   constructor(private gameService: GameService) {}
 
@@ -36,7 +37,18 @@ export class PlacementComponent {
     console.log(this.selectedBoat);
   }
 
-  onBoatSelectedIsPlacedOnTheGrid() {
+  mouseEnterInTheGrid() {
+    console.log("mouse enter in the grid");
+    this.isMouseOverTheGrid = true;
+  }
+
+  mouseExitTheGrid() {
+    console.log("mouse exit the grid");
+    this.isMouseOverTheGrid = false;
+  }
+
+  onGridUpdate(onGridBoats: Boat[]) {
+    this.onGridBoats = onGridBoats;
     this.selectedBoat = undefined as unknown as BoatDescription;
 
     // when we dispose the last boat
@@ -56,10 +68,6 @@ export class PlacementComponent {
         this.isWaitingForOpponentPositionHisBoat = true;
       }
     }
-  }
-
-  onGridUpdate(onGridBoats: Boat[]) {
-    this.onGridBoats = onGridBoats;
   }
 
   onLastBoatSelected() {

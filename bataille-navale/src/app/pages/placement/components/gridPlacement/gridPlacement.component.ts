@@ -17,7 +17,8 @@ import { Coordinate } from "src/app/models/coordinate";
 export class GridPlacementComponent {
   @Input() selectedBoat?: BoatDescription;
   @Output() gridUpdateEvent = new EventEmitter<Boat[]>();
-  @Output() boatSelectedIsPlacedEvent = new EventEmitter();
+  @Output() mouseEnterInTheGrid = new EventEmitter();
+  @Output() mouseExitTheGrid = new EventEmitter();
   cellHover = undefined as unknown as Coordinate;
   isHorizontalBoat = false;
 
@@ -46,7 +47,6 @@ export class GridPlacementComponent {
       boatState: { isDestroyed: false },
     });
 
-    this.boatSelectedIsPlacedEvent.emit();
     this.gridUpdateEvent.emit(this.boatOnGridList);
   }
 
@@ -54,8 +54,15 @@ export class GridPlacementComponent {
     this.cellHover = caseHover;
   }
 
-  onLeaveGrid() {
+  onMouseEnterInTheGrid() {
+    console.log("onEnterGrid");
+    this.mouseEnterInTheGrid.emit();
+  }
+
+  onMouseExitTheGrid() {
+    console.log("onLeaveGrid");
     this.cellHover = undefined as unknown as Coordinate;
+    this.mouseExitTheGrid.emit();
   }
 
   cellHoverCanBeSelected(): boolean {

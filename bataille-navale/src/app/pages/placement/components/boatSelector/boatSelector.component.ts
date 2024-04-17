@@ -20,6 +20,7 @@ export class BoatSelectorComponent {
   @Output() onLastBoatSelectedEvent = new EventEmitter();
   @Input() selectedBoat?: BoatDescription;
   @Input() onGridBoats?: Boat[];
+  @Input() isMouseOverTheGrid?: boolean;
 
   PorteAvion = PorteAvion;
   Croiseur = Croiseur;
@@ -29,6 +30,13 @@ export class BoatSelectorComponent {
 
   freeDragPosition: Point = { x: 0, y: 0 };
   private initialPosition: Point = { x: 0, y: 0 };
+
+  constructor() {
+    const that = this;
+    setInterval(() => {
+      console.log("boatSelector :" + that.isMouseOverTheGrid);
+    }, 1000);
+  }
 
   onBoatSelected(boat: BoatDescription) {
     if (!this.isBoatOnTheGrid(boat)) {
