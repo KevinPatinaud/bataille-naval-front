@@ -23,12 +23,14 @@ import { AppRoutingModule } from "./app-routing.module";
 import { FormsModule } from "@angular/forms";
 import { ForceUppercaseDirective } from "./directives/ForceUppercaseDirective";
 import { ForceUrlFormatDirective } from "./directives/ForceUrlFormatDirective";
+import { IdGameFormatDirective } from "./directives/IdGameFormatDirective";
 
 @NgModule({
   declarations: [
     AppComponent,
     ForceUppercaseDirective,
     ForceUrlFormatDirective,
+    IdGameFormatDirective,
     InscriptionComponent,
     GameEngineComponent,
     GameModeComponent,

@@ -16,7 +16,7 @@ export class MultiPlayerOptionBoxComponent {
 
   formKey = 0;
   myIdGame: string = "";
-  opponentIdGame: String = "";
+  opponentIdGame: string = "";
 
   errorMessage = "";
 
@@ -40,15 +40,7 @@ export class MultiPlayerOptionBoxComponent {
 
   updateOpponentIdGame(value: string) {
     this.opponentIdGame = value;
-    const opponentIdGame = value
-      .toUpperCase()
-      .replace(/\s/g, "")
-      .replace(/[^\w\-_]/g, "");
-
-    setTimeout(() => {
-      this.opponentIdGame = opponentIdGame;
-    });
-
+    
     if (this.myIdGame === this.opponentIdGame) {
       this.errorMessage = "Vous ne pouvez pas utiliser votre propre id";
     }
@@ -56,13 +48,13 @@ export class MultiPlayerOptionBoxComponent {
     if (value && value.length > 6 && this.myIdGame !== this.opponentIdGame) {
       const that = this;
       this.gameService
-        .isGameWaitingSecondPlayer(opponentIdGame)
+        .isGameWaitingSecondPlayer(this.opponentIdGame)
         .subscribe((isGameWaitingForJoinning: boolean) => {
           console.log(isGameWaitingForJoinning);
 
           if (isGameWaitingForJoinning) {
-            that.gameService.joinGame(opponentIdGame);
-            that.joinOpponentGameEvent.emit(opponentIdGame);
+            that.gameService.joinGame(this.opponentIdGame);
+            that.joinOpponentGameEvent.emit(this.opponentIdGame);
           }
         });
     }

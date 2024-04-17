@@ -9,7 +9,7 @@
     Ou renseigne son identifiant :
     </p>
     <p class="description">
-        <input class="inputIdGame" type="text" [ngModel]="opponentIdGame" (ngModelChange)="updateOpponentIdGame($event)" />
+        <input class="inputIdGame" type="text" [ngModel]="opponentIdGame" (ngModelChange)="updateOpponentIdGame($event)" appForceUppercase appIdGameFormat/>
     </p>
     <p class="error" *ngIf="errorMessage.length >= 1">
         {{ errorMessage }}
