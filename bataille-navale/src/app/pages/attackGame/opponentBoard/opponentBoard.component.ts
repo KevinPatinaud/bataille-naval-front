@@ -11,7 +11,7 @@ import { GameService } from "src/app/services/game/game.service";
   styleUrls: ["./opponentBoard.component.css"],
 })
 export class OpponentBoardComponent {
-  revealedCells = [] as Cell[];
+  grid :Cell[][] = Array.from({ length: 10 }, () => Array(10).fill({isRevealed : false} as Cell));
   isMyTurn = false;
   isGameModeMulti: boolean;
 
@@ -23,10 +23,8 @@ export class OpponentBoardComponent {
   ngOnInit() {
     const that = this;
     this.gameService.opponentCellsUpdateEvent.subscribe(
-      (revealedCells: Cell[]) => {
-        console.log("opponentBoard :");
-        console.log(revealedCells);
-        this.revealedCells = revealedCells;
+      (grid: Cell[][]) => {
+        this.grid = grid;
       }
     );
     this.gameService.playerTurnUpdateEvent.subscribe((idPlayerTurn: string) => {
@@ -35,28 +33,9 @@ export class OpponentBoardComponent {
     });
   }
   onCellSelected(coordinate: Coordinate) {
-    if (!this.isCellRevealed(coordinate)) {
+    if (!this.grid[coordinate.x][coordinate.y].isRevealed) {
       this.gameService.attackCell(coordinate);
     }
   }
 
-  isCellRevealed(coordinate: Coordinate) {
-    return (
-      this.revealedCells.filter(
-        (cell: Cell) =>
-          cell.isRevealed &&
-          cell.coordinate.x === coordinate.x &&
-          cell.coordinate.y === coordinate.y
-      ).length >= 1
-    );
-  }
-
-  isCellOccupied(coordinate: Coordinate) {
-    return this.revealedCells.find(
-      (cell: Cell) =>
-        cell.isOccupied &&
-        cell.coordinate.x === coordinate.x &&
-        cell.coordinate.y === coordinate.y
-    )?.isOccupied;
-  }
 }

@@ -1,9 +1,23 @@
   <div class="grid" >
     <div *ngIf="!isMyTurn && isGameModeMulti" class="waiting"></div>
-      <div *ngFor="let xit of [].constructor(10) ; let x = index" class="column">
-          <div *ngFor="let yit of [].constructor(10) ; let y = index"  [id]="'opponentGrid_x' + x + '_y' + y" class="cell" (click)="onCellSelected({ x : x , y : y})" >
-              <img *ngIf="! isCellRevealed({ x : x , y : y})" class="imgCell notRevealedCells" src="../../../../assets/images/cloud.jpg"/>
-              <img *ngIf="isCellRevealed({ x : x , y : y}) && isCellOccupied({ x : x , y : y})" class="imgCell " src="../../../../assets/images/explosion.png"/>
+    @for(ceX of grid ; track ceX ; let x = $index)
+    {
+      <div class="column">
+        @for( cell of ceX ; track cell ; let y = $index)
+        {
+          <div [id]="'opponentGrid_x' + x + '_y' + y" class="cell" (click)="onCellSelected({ x : x , y : y})" >
+
+            @if( ! cell.isRevealed)
+            {
+              <img class="imgCell notRevealedCells" src="../../../../assets/images/cloud.jpg"/>
+            }
+            @else if(cell.isOccupied)
+            {
+              <img class="imgCell " src="../../../../assets/images/explosion.png"/> 
+            }
+             
           </div>
+        }
       </div>
+    }
   </div>

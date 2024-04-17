@@ -14,13 +14,13 @@ import { WebSocketService } from "src/app/services/websocket/webSocket.service";
 })
 export class MyBoardComponent {
   subscription: Subscription;
-  cells :Cell[][] = Array.from({ length: 10 }, () => Array(10).fill({isRevealed : false} as Cell));
+  grid :Cell[][] = Array.from({ length: 10 }, () => Array(10).fill({isRevealed : false} as Cell));
   @Input() myBoats: Boat[] | undefined;
 
   constructor(private gameService: GameService) {
     this.subscription = this.gameService.mineCellsUpdateEvent.subscribe(
-      (cells: Cell[][]) => {
-        this.cells = cells;
+      (grid: Cell[][]) => {
+        this.grid = grid;
       }
     );
   }
