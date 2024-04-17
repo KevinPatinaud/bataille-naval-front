@@ -88,10 +88,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "bataille-navale:build:production"
+              "buildTarget": "bataille-navale:build:production"
             },
             "development": {
-              "browserTarget": "bataille-navale:build:development"
+              "buildTarget": "bataille-navale:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -99,7 +99,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "bataille-navale:build"
+            "buildTarget": "bataille-navale:build"
           }
         }
       }
