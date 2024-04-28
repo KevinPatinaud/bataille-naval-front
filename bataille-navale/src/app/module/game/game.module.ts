@@ -1,6 +1,5 @@
-import { InjectionToken, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppComponent } from 'src/app/app.component';
 import { AnimationLoseComponent } from './components/animation_lose/animationLose.component';
 import { AnimationLetsGoComponent } from './components/animation_new_game/animationLetsGo.component';
 import { AnimationWinComponent } from './components/animation_win/animationWin.component';
@@ -20,11 +19,7 @@ import { BoatSelectorImgComponent } from './pages/placement/components/boatSelec
 import { GridPlacementComponent } from './pages/placement/components/gridPlacement/gridPlacement.component';
 import { PlacementComponent } from './pages/placement/placement.component';
 import { CdkDrag } from '@angular/cdk/drag-drop';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
 
 
@@ -34,7 +29,6 @@ const routes: Routes = [
 
 @NgModule({  
   declarations: [
-  AppComponent,
   ForceUppercaseDirective,
   ForceUrlFormatDirective,
   IdGameFormatDirective,
@@ -56,9 +50,6 @@ const routes: Routes = [
 ],
   imports: [
     CommonModule,
-    AppRoutingModule,
-    BrowserModule,
-    BrowserAnimationsModule,
     CdkDrag,
     FormsModule,
     RouterModule.forChild(routes)
