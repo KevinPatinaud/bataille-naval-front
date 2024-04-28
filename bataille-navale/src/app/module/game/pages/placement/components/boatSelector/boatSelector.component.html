@@ -1,5 +1,4 @@
-(isMouseOverTheGrid)<div class= "boatSelector">
-
+<div class= "boatSelector">
 
     <div class="boatLine"  (click)="onBoatSelected(PorteAvion)">      
        <app-boat-selector-img (onBoatSelectedEvent)="onBoatSelected(PorteAvion)" [isMouseOverTheGrid]="isMouseOverTheGrid" [boatToDisplay]="PorteAvion" [selected]="selectedBoat?.type === PorteAvion.type" [disable]="isBoatOnTheGrid(PorteAvion)"/>

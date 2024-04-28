@@ -25,11 +25,12 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from 'src/app/app-routing.module';
+import { RouterModule, Routes } from '@angular/router';
 
 
-
-export const API_BASE_URL_TOKEN = new InjectionToken<string>("api base url");
-
+const routes: Routes = [
+  { path: '', component: GameEngineComponent }
+];
 
 @NgModule({  
   declarations: [
@@ -58,12 +59,9 @@ export const API_BASE_URL_TOKEN = new InjectionToken<string>("api base url");
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
-    HttpClientModule,
     CdkDrag,
     FormsModule,
+    RouterModule.forChild(routes)
   ],
-  providers: [
-    { provide: API_BASE_URL_TOKEN, useValue: "http://" + window.location.hostname + ":8080" }
-  ]
 })
 export class GameModule { }

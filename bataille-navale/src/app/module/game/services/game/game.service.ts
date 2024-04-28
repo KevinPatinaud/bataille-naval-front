@@ -1,7 +1,6 @@
 import { EventEmitter, Inject, Injectable } from "@angular/core";
 import { WebSocketService } from "../websocket/webSocket.service";
 import { Observable, Subscription, map } from "rxjs";
-import { RestService } from "../rest/rest.service";
 import BoatMapper from "./mappers/Boat.mapper";
 import CellMapper from "./mappers/Cell.mapper";
 import { Cell } from "../../models/cell";
@@ -9,10 +8,12 @@ import Boat from "../../models/boat";
 import { StatusEndGame } from "../../locales/statusEndGame";
 import { GameMode } from "../../locales/gameMode";
 import { Coordinate } from "../../models/coordinate";
-import { API_BASE_URL_TOKEN } from "../../game.module";
+import {  GameModule } from "../../game.module";
+import { API_BASE_URL_TOKEN } from "src/app/app.module";
+import { RestService } from "src/app/module/core/services/rest/rest.service";
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root'
 })
 export class GameService {
   playerTurnUpdateEvent: EventEmitter<string> = new EventEmitter();

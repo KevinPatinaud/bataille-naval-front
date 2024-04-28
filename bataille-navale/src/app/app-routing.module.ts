@@ -4,9 +4,11 @@ import { GameEngineComponent } from "./module/game/pages/gameEngine/gameEngine.c
 import { InscriptionComponent } from "./module/game/pages/inscription/inscription.component";
 
 const routes: Routes = [
+  { path: "", redirectTo: "/game", pathMatch: "full" },
+//  { path: "game",  loadChildren: () => import('./module/game/game.module').then(m => m.GameModule)  },
+//  { path: "inscription",  loadChildren: () => import('./module/user/user.module').then(m => m.UserModule)  },
   { path: "game", component: GameEngineComponent },
   { path: "inscription", component: InscriptionComponent },
-  { path: "", redirectTo: "/game", pathMatch: "full" },
 ];
 
 @NgModule({
