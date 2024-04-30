@@ -1,0 +1,32 @@
+<div class="page">
+  <div class="head">
+    <app-header />
+  </div>
+  <div class="body">
+    <app-game-mode
+      *ngIf="displayMode"
+      (onGameModeChoosed)="onGameModeChoosed($event)"
+    ></app-game-mode>
+    <app-placement
+      *ngIf="displayPlacement"
+      (onAllBoatAreDisposeEvent)="onAllBoatAreDispose($event)"
+    />
+    <app-animation-lets-go
+      *ngIf="displayLetsGoAnimation"
+      (animationFinishedEvent)="onLetsGoAnimationFinished()"
+    />
+    <app-attack-game
+      *ngIf="displayAttackGame"
+      [myBoats]="myBoats"
+      (onGameFinishedEvent)="onGameFinished($event)"
+    />
+    <app-animation-win
+      *ngIf="displayWinAnimation"
+      (animationFinishedEvent)="onAnimationEndGameResultFinished()"
+    />
+    <app-animation-lose
+      *ngIf="displayLoseAnimation"
+      (animationFinishedEvent)="onAnimationEndGameResultFinished()"
+    />
+  </div>
+</div>

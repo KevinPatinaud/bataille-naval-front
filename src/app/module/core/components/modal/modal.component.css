@@ -1,0 +1,134 @@
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(200, 200, 200, 0.5);
+  z-index: 9999;
+}
+.modal {
+  position: absolute;
+
+  width: fit-content;
+  height: fit-content;
+  padding-left: 3%;
+  padding-right: 3%;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  margin: auto;
+
+  border-radius: 60px;
+
+  background-color: #ddd;
+  border-left: 5px solid #bbb;
+  border-top: 5px solid #eee;
+  border-right: 5px solid #eee;
+  border-bottom: 5px solid #bbb;
+
+  padding-top: 1%;
+  padding-bottom: 1%;
+  box-sizing: border-box;
+  z-index: 99999;
+}
+
+.modal input {
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  outline: none;
+  font-weight: bold;
+}
+
+.modal input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+.modal .title {
+  font-size: 32px;
+  text-align: center;
+  color: white;
+  text-shadow: #000 3px 0 10px;
+  font-weight: bold;
+}
+
+.modal .description {
+  font-size: 28px;
+  text-align: center;
+  color: white;
+  text-shadow: #000 3px 0 10px;
+  font-weight: bold;
+}
+
+.descriptionHighlight {
+  font-size: 32px;
+  text-align: center;
+  color: white;
+  text-shadow: #000 3px 0 10px;
+  font-weight: bold;
+}
+
+.modal .actionBtn {
+  background-color: #1f618d;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: 24px;
+  box-shadow:
+    inset 2px 2px 5px rgba(0, 0, 0, 0.2),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.5),
+    1px 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s;
+  padding: 15px;
+}
+.modal .actionBtn:hover,
+.modal .actionBtn:focus {
+  background-color: #1e98ea;
+  box-shadow:
+    inset 1px 1px 3px rgba(0, 0, 0, 0.1),
+    inset -1px -1px 3px rgba(255, 255, 255, 0.3),
+    2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.modal .closeBtn {
+  right: 3%;
+  float: right;
+  position: absolute;
+
+  background-color: #aaa;
+  color: white;
+  border: none;
+  border-radius: 50%;
+
+  font-weight: bold;
+  font-size: 16px;
+  box-shadow:
+    inset 2px 2px 5px rgba(0, 0, 0, 0.2),
+    inset -2px -2px 5px rgba(255, 255, 255, 0.5),
+    1px 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s;
+  width: 30px;
+  height: 30px;
+}
+.modal .closeBtn:hover,
+.modal .closeBtn:focus {
+  background-color: #696969;
+  box-shadow:
+    inset 1px 1px 3px rgba(0, 0, 0, 0.1),
+    inset -1px -1px 3px rgba(255, 255, 255, 0.3),
+    2px 2px 5px rgba(0, 0, 0, 0.1);
+}

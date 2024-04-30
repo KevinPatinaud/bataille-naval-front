@@ -1,0 +1,25 @@
+.opponentBoatStates {
+  max-width: 80%;
+  height: 100%;
+  padding-top: 10px;
+  display: flex;
+}
+.opponentBoatStates > div {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.imgBoat {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 100%;
+  box-shadow:
+    0 0 5px #fff,
+    0 0 10px #ccc,
+    0 0 15px #ddd;
+}
+
+.boatDestroyed {
+  filter: grayscale(100%);
+  box-shadow: none;
+}

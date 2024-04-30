@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="page"></div>
+  <img
+    @fadeInOut
+    class="message"
+    (@fadeInOut.done)="animationDone($event)"
+    src="../../../assets/images/let_s_go.jpg"
+  />
+</div>

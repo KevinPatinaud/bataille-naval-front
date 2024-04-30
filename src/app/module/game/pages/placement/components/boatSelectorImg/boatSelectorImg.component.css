@@ -1,0 +1,54 @@
+.boatImg {
+  width: 74%;
+  height: 86%;
+  margin-left: 13%;
+  margin-top: 7%;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.boatImgSelected {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.boatImg:hover {
+  width: 86%;
+  height: 90%;
+  margin-left: 7%;
+  margin-top: 5%;
+  border-radius: 20px;
+  box-shadow: none;
+}
+
+.boatAlreadyPositionned {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.boatName {
+  margin-block-start: 0em;
+}
+
+@media (max-width: 768px) {
+  .boatImg {
+    width: 74%;
+    height: 86%;
+    margin-left: 13%;
+    margin-top: 7%;
+    border-radius: 20px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .boatImg:hover {
+    width: 86%;
+    height: 90%;
+    margin-left: 7%;
+    margin-top: 5%;
+    border-radius: 20px;
+    box-shadow: none;
+  }
+}

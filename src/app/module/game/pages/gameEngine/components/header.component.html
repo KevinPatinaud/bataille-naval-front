@@ -1,0 +1,4 @@
+<div class="header">
+  <button class="userBtn" (click)="openUserMenu()"></button>
+  <user-menu *ngIf="displayUserMenu" (closeMenuEvent)="closeUserMenu()" />
+</div>

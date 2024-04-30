@@ -1,0 +1,67 @@
+.playerBoards {
+  width: 92%;
+  position: relative;
+  left: 4%;
+  top: 0%;
+  height: 90%;
+  display: flex;
+}
+
+.opponent {
+  width: 48%;
+  height: 100%;
+  padding-right: 2%;
+}
+
+.opponentBoard {
+  height: 92%;
+}
+
+.opponentBoatStates {
+  height: 10%;
+}
+app-opponent-boats-states {
+  display: flex;
+  justify-content: center;
+}
+.my {
+  width: 48%;
+  height: 100%;
+  padding-left: 2%;
+}
+
+.myBoard {
+  height: 92%;
+}
+
+@media (max-width: 768px) {
+  .playerBoards {
+    flex-direction: column-reverse;
+    justify-items: end;
+  }
+  .opponent {
+    width: 98%;
+    height: 50%;
+    padding-right: 0;
+    padding-top: 1%;
+  }
+
+  .opponentBoard {
+    height: 100%;
+  }
+
+  .opponentBoatStates {
+    display: none;
+  }
+
+  .my {
+    width: 98%;
+    height: 50%;
+    padding-left: 0;
+    padding-bottom: 1%;
+  }
+
+  .myBoard {
+    height: 100%;
+  }
+}
