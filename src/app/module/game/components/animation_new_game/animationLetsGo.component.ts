@@ -8,7 +8,7 @@ import {
 } from "@angular/animations";
 
 @Component({
-  selector: "app-animation-lets-go",
+  selector: "game-animation-lets-go",
   templateUrl: "./animationLetsGo.component.html",
   styleUrls: ["./animationLetsGo.component.css"],
   animations: [

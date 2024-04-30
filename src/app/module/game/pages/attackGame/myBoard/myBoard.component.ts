@@ -5,7 +5,7 @@ import { Cell } from "../../../models/cell";
 import Boat from "../../../models/boat";
 
 @Component({
-  selector: "app-my-board",
+  selector: "game-my-board",
   templateUrl: "./myBoard.component.html",
   styleUrls: ["./myBoard.component.css"],
 })

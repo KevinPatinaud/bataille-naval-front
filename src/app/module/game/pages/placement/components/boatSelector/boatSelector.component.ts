@@ -12,7 +12,7 @@ import {
 } from "src/app/module/game/locales/boats";
 
 @Component({
-  selector: "app-boat-selector",
+  selector: "game-boat-selector",
   templateUrl: "./boatSelector.component.html",
   styleUrls: ["./boatSelector.component.css"],
 })

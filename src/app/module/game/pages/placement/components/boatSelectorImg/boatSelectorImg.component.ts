@@ -4,7 +4,7 @@ import { CdkDrag, CdkDragStart, Point } from "@angular/cdk/drag-drop";
 import { BoatDescription } from "src/app/module/game/models/boatDescription";
 
 @Component({
-  selector: "app-boat-selector-img",
+  selector: "game-boat-selector-img",
   templateUrl: "./boatSelectorImg.component.html",
   styleUrls: ["./boatSelectorImg.component.css"],
 })

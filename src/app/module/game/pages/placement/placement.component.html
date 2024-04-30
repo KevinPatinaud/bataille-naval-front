@@ -1,10 +1,10 @@
-<app-grid-placement
+<game-grid-placement
   [selectedBoat]="selectedBoat"
   (gridUpdateEvent)="onGridUpdate($event)"
   (mouseEnterInTheGrid)="mouseEnterInTheGrid()"
   (mouseExitTheGrid)="mouseExitTheGrid()"
 />
-<app-boat-selector
+<game-boat-selector
   [selectedBoat]="selectedBoat"
   [isMouseOverTheGrid]="isMouseOverTheGrid"
   [onGridBoats]="onGridBoats"

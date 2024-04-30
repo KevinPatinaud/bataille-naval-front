@@ -11,7 +11,7 @@ import Boat from "../../../models/boat";
 import { GameService } from "../../../services/game/game.service";
 
 @Component({
-  selector: "app-opponent-boats-states",
+  selector: "game-opponent-boats-states",
   templateUrl: "./opponentBoatsStates.component.html",
   styleUrls: ["./opponentBoatsStates.component.css"],
 })

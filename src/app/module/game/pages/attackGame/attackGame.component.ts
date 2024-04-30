@@ -4,7 +4,7 @@ import { StatusEndGame } from "../../locales/statusEndGame";
 import Boat from "../../models/boat";
 import { GameService } from "../../services/game/game.service";
 @Component({
-  selector: "app-attack-game",
+  selector: "game-attack-game",
   templateUrl: "./attackGame.component.html",
   styleUrls: ["./attackGame.component.css"],
 })

@@ -8,7 +8,7 @@ import {
 } from "@angular/animations";
 
 @Component({
-  selector: "app-animation-lose",
+  selector: "game-animation-lose",
   templateUrl: "./animationLose.component.html",
   styleUrls: ["./animationLose.component.css"],
   animations: [

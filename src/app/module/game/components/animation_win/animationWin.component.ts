@@ -8,7 +8,7 @@ import {
 } from "@angular/animations";
 
 @Component({
-  selector: "app-animation-win",
+  selector: "game-animation-win",
   templateUrl: "./animationWin.component.html",
   styleUrls: ["./animationWin.component.css"],
   animations: [

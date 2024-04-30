@@ -20,7 +20,7 @@
 .opponentBoatStates {
   height: 10%;
 }
-app-opponent-boats-states {
+game-opponent-boats-states {
   display: flex;
   justify-content: center;
 }

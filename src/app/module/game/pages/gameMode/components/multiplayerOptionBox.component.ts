@@ -9,7 +9,7 @@ import { GameService } from "../../../services/game/game.service";
 import { GameMode } from "../../../locales/gameMode";
 
 @Component({
-  selector: "app-multi-player-option-box",
+  selector: "game-multi-player-option-box",
   templateUrl: "./multiplayerOptionBox.component.html",
   styleUrls: ["./multiplayerOptionBox.component.css"],
 })

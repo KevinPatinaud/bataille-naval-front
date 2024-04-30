@@ -6,7 +6,7 @@
       Multijoueur
     </button>
   </div>
-  <app-multi-player-option-box
+  <game-multi-player-option-box
     *ngIf="displayMultiplayerOptionBox"
     (closeEvent)="closeMultiPlayerBox()"
     (opponentJoinGameEvent)="allPlayerReady($event)"

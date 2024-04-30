@@ -5,7 +5,7 @@ import { GameService } from "../../services/game/game.service";
 import { GameMode } from "../../locales/gameMode";
 
 @Component({
-  selector: "app-placement",
+  selector: "game-placement",
   templateUrl: "./placement.component.html",
   styleUrls: ["./placement.component.css"],
 })

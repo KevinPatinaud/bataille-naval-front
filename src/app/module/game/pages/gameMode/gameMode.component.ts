@@ -3,7 +3,7 @@ import { GameMode } from "../../locales/gameMode";
 import { GameService } from "../../services/game/game.service";
 
 @Component({
-  selector: "app-game-mode",
+  selector: "game-mode",
   templateUrl: "./gameMode.component.html",
   styleUrls: ["./gameMode.component.css"],
 })

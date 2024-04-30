@@ -10,7 +10,7 @@ import { BoatDescription } from "src/app/module/game/models/boatDescription";
 import { Coordinate } from "src/app/module/game/models/coordinate";
 
 @Component({
-  selector: "app-grid-placement",
+  selector: "game-grid-placement",
   templateUrl: "./gridPlacement.component.html",
   styleUrls: ["./gridPlacement.component.css"],
 })

@@ -5,7 +5,7 @@ import { Cell } from "../../../models/cell";
 import { Coordinate } from "../../../models/coordinate";
 
 @Component({
-  selector: "app-opponent-board",
+  selector: "game-opponent-board",
   templateUrl: "./opponentBoard.component.html",
   styleUrls: ["./opponentBoard.component.css"],
 })

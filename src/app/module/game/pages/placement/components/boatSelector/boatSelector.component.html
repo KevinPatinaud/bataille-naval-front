@@ -1,6 +1,6 @@
 <div class="boatSelector">
   <div class="boatLine" (click)="onBoatSelected(PorteAvion)">
-    <app-boat-selector-img
+    <game-boat-selector-img
       (onBoatSelectedEvent)="onBoatSelected(PorteAvion)"
       [isMouseOverTheGrid]="isMouseOverTheGrid"
       [boatToDisplay]="PorteAvion"
@@ -10,7 +10,7 @@
   </div>
 
   <div class="boatLine" (click)="onBoatSelected(Croiseur)">
-    <app-boat-selector-img
+    <game-boat-selector-img
       (onBoatSelectedEvent)="onBoatSelected(Croiseur)"
       [isMouseOverTheGrid]="isMouseOverTheGrid"
       [boatToDisplay]="Croiseur"
@@ -20,7 +20,7 @@
   </div>
 
   <div class="boatLine" (click)="onBoatSelected(SousMarin_1)">
-    <app-boat-selector-img
+    <game-boat-selector-img
       (onBoatSelectedEvent)="onBoatSelected(SousMarin_1)"
       [isMouseOverTheGrid]="isMouseOverTheGrid"
       [boatToDisplay]="SousMarin_1"
@@ -30,7 +30,7 @@
   </div>
 
   <div class="boatLine" (click)="onBoatSelected(SousMarin_2)">
-    <app-boat-selector-img
+    <game-boat-selector-img
       (onBoatSelectedEvent)="onBoatSelected(SousMarin_2)"
       [isMouseOverTheGrid]="isMouseOverTheGrid"
       [boatToDisplay]="SousMarin_2"
@@ -40,7 +40,7 @@
   </div>
 
   <div class="boatLine" (click)="onBoatSelected(Torpilleur)">
-    <app-boat-selector-img
+    <game-boat-selector-img
       (onBoatSelectedEvent)="onBoatSelected(Torpilleur)"
       [isMouseOverTheGrid]="isMouseOverTheGrid"
       [boatToDisplay]="Torpilleur"

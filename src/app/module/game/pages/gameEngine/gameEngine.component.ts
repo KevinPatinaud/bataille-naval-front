@@ -4,7 +4,7 @@ import { GameMode } from "../../locales/gameMode";
 import { StatusEndGame } from "../../locales/statusEndGame";
 
 @Component({
-  selector: "app-game-engine",
+  selector: "game-game-engine",
   templateUrl: "./gameEngine.component.html",
   styleUrls: ["./gameEngine.component.css"],
 })
