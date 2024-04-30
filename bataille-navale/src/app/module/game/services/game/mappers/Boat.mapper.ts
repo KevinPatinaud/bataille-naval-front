@@ -1,8 +1,12 @@
-
-import { Croiseur, PorteAvion, SousMarin_1, SousMarin_2, Torpilleur } from "../../../locales/boats";
+import {
+  Croiseur,
+  PorteAvion,
+  SousMarin_1,
+  SousMarin_2,
+  Torpilleur,
+} from "../../../locales/boats";
 import Boat from "../../../models/boat";
 import { BoatDto } from "../dto/boat.dto";
-
 
 export default class BoatMapper {
   static gridBoatstoDtos(boats: Boat[]): BoatDto[] {

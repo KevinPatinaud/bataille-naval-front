@@ -39,3 +39,21 @@ app-boat-selector-img {
 .boatName {
   margin-block-start: 0em;
 }
+
+@media (max-width: 768px) {
+  .boatSelector {
+    right: unset;
+    left: 0;
+    width: 96%;
+    height: 10%;
+    top: unset;
+    bottom: 0;
+    margin: 2%;
+    display: flex;
+  }
+
+  .boatLine {
+    height: 100%;
+    width: 100%;
+  }
+}

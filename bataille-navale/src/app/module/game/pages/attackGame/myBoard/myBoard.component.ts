@@ -11,20 +11,21 @@ import Boat from "../../../models/boat";
 })
 export class MyBoardComponent {
   subscription: Subscription;
-  grid :Cell[][] = Array.from({ length: 10 }, () => Array(10).fill({isRevealed : false} as Cell));
+  grid: Cell[][] = Array.from({ length: 10 }, () =>
+    Array(10).fill({ isRevealed: false } as Cell),
+  );
   @Input() myBoats: Boat[] | undefined;
 
   constructor(private gameService: GameService) {
     this.subscription = this.gameService.mineCellsUpdateEvent.subscribe(
       (grid: Cell[][]) => {
         this.grid = grid;
-      }
+      },
     );
   }
   ngOnInit() {}
 
-
-  isCellOccupied(x : number , y : number) {
+  isCellOccupied(x: number, y: number) {
     if (!this.myBoats) return false;
 
     return (

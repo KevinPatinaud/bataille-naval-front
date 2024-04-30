@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { AuthService } from "../../services/user/AuthService ";
+import { AuthService } from "../../../game/services/user/AuthService ";
 
 @Component({
   selector: "app-inscription",
@@ -19,11 +19,10 @@ export class InscriptionComponent {
       .subscribe(
         (data: any) => {
           console.log("Inscription réussie", data);
-          // Redirigez l'utilisateur ou affichez un message de succès
         },
         (error: any) => {
           console.error("Erreur d'inscription", error);
-        }
+        },
       );
   }
 }

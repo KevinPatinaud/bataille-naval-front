@@ -8,12 +8,12 @@ import Boat from "../../models/boat";
 import { StatusEndGame } from "../../locales/statusEndGame";
 import { GameMode } from "../../locales/gameMode";
 import { Coordinate } from "../../models/coordinate";
-import {  GameModule } from "../../game.module";
+import { GameModule } from "../../game.module";
 import { API_BASE_URL_TOKEN } from "src/app/app.module";
 import { RestService } from "src/app/module/core/services/rest/rest.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class GameService {
   playerTurnUpdateEvent: EventEmitter<string> = new EventEmitter();
@@ -25,8 +25,6 @@ export class GameService {
   opponentJoinGameEvent: EventEmitter<string> = new EventEmitter();
   opponentPositionBoatDoneEvent: EventEmitter<string> = new EventEmitter();
 
-
-
   idGame = "";
   idPlayer = "";
   gameMode: GameMode | any;
@@ -35,7 +33,7 @@ export class GameService {
   constructor(
     @Inject(API_BASE_URL_TOKEN) public apiBaseURL: string,
     private restService: RestService,
-    private webSocketService: WebSocketService
+    private webSocketService: WebSocketService,
   ) {}
 
   getIdGame() {
@@ -52,7 +50,7 @@ export class GameService {
 
   isGameWaitingSecondPlayer(idGame: string) {
     return this.restService.get(
-      this.apiBaseURL + "/game/" + idGame + "/iswaitingsecondplayer"
+      this.apiBaseURL + "/game/" + idGame + "/iswaitingsecondplayer",
     );
   }
 
@@ -73,7 +71,7 @@ export class GameService {
         that.idPlayer = "PLAYER_1";
         this.launchWebsocketConnection();
         return game.id;
-      })
+      }),
     );
   }
 
@@ -86,7 +84,7 @@ export class GameService {
 
     const newGame$ = that.restService.put(
       this.apiBaseURL + "/game/" + idGame + "/join",
-      {}
+      {},
     );
 
     newGame$.subscribe((data: any) => {
@@ -133,12 +131,12 @@ export class GameService {
           that.mineCellsUpdateEvent.emit(CellMapper.fromDtos(me.cells));
 
           that.opponentBoatsUpdateEvent.emit(
-            BoatMapper.fromDtos(opponent.boatsStates)
+            BoatMapper.fromDtos(opponent.boatsStates),
           );
           that.opponentCellsUpdateEvent.emit(
-            CellMapper.fromDtos(opponent.cells)
+            CellMapper.fromDtos(opponent.cells),
           );
-        }
+        },
       );
 
       that.webSocketService.subscribe(
@@ -152,7 +150,7 @@ export class GameService {
           } else {
             that.endGameEvent.emit(StatusEndGame.LOSE);
           }
-        }
+        },
       );
 
       if (that.gameMode === GameMode.MULTI) {
@@ -162,7 +160,7 @@ export class GameService {
             console.log("Le second joueur vient de rejoindre la partie");
             console.log(message);
             that.opponentJoinGameEvent.emit(message);
-          }
+          },
         );
         that.webSocketService.subscribe(
           "/diffuse/" + idGame + "/playerPositionBoats",
@@ -171,18 +169,18 @@ export class GameService {
 
             const idPlayerPositionBoat = (message.body as string).replaceAll(
               '"',
-              ""
+              "",
             );
 
             if (!idPlayerPositionBoat.includes(that.idPlayer)) {
               console.log(
                 "Le joueur advserse : " +
                   idPlayerPositionBoat +
-                  " vient de positionner ses bateaux"
+                  " vient de positionner ses bateaux",
               );
               that.opponentPositionBoatDoneEvent.emit(idPlayerPositionBoat);
             }
-          }
+          },
         );
       }
     });
@@ -192,7 +190,7 @@ export class GameService {
     const that = this;
     this.webSocketService.send(
       "/action/" + that.idGame + "/submit-boat/" + this.idPlayer,
-      JSON.stringify(BoatMapper.gridBoatstoDtos(boats))
+      JSON.stringify(BoatMapper.gridBoatstoDtos(boats)),
     );
   }
 
@@ -200,15 +198,15 @@ export class GameService {
     const that = this;
     this.webSocketService.send(
       "/action/" + that.idGame + "/attack/" + this.idPlayer,
-      JSON.stringify(coordinate)
+      JSON.stringify(coordinate),
     );
   }
 
-  
   askGameState() {
     const that = this;
     this.webSocketService.send(
-      "/action/" + that.idGame + "/gameState" , undefined
+      "/action/" + that.idGame + "/gameState",
+      undefined,
     );
   }
 }

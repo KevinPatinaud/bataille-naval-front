@@ -56,3 +56,15 @@
   text-shadow: #000 3px 0 10px;
   font-weight: bold;
 }
+
+@media (max-width: 768px) {
+  .gridPlacement {
+    position: relative;
+    left: 2%;
+    top: 0%;
+    width: 96%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+  }
+}

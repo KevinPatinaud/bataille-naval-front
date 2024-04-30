@@ -35,7 +35,7 @@ describe("MyBoardComponent", () => {
     const cells = fixture.debugElement.queryAll(By.css("div.cell"));
     expect(cells.length).toBe(100);
     const clouds = fixture.debugElement.queryAll(
-      By.css("img.notRevealedCells")
+      By.css("img.notRevealedCells"),
     );
     expect(clouds.length).toBe(100);
 
@@ -52,7 +52,7 @@ describe("MyBoardComponent", () => {
 
     expect(component.revealedCells.length).toBe(1);
     const afterClouds = fixture.debugElement.queryAll(
-      By.css("img.notRevealedCells")
+      By.css("img.notRevealedCells"),
     );
     expect(afterClouds.length).toBe(99);
   }));

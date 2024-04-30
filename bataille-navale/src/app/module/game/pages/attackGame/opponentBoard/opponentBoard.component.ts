@@ -10,7 +10,9 @@ import { Coordinate } from "../../../models/coordinate";
   styleUrls: ["./opponentBoard.component.css"],
 })
 export class OpponentBoardComponent {
-  grid :Cell[][] = Array.from({ length: 10 }, () => Array(10).fill({isRevealed : false} as Cell));
+  grid: Cell[][] = Array.from({ length: 10 }, () =>
+    Array(10).fill({ isRevealed: false } as Cell),
+  );
   isMyTurn = false;
   isGameModeMulti: boolean;
 
@@ -21,11 +23,9 @@ export class OpponentBoardComponent {
 
   ngOnInit() {
     const that = this;
-    this.gameService.opponentCellsUpdateEvent.subscribe(
-      (grid: Cell[][]) => {
-        this.grid = grid;
-      }
-    );
+    this.gameService.opponentCellsUpdateEvent.subscribe((grid: Cell[][]) => {
+      this.grid = grid;
+    });
     this.gameService.playerTurnUpdateEvent.subscribe((idPlayerTurn: string) => {
       that.isMyTurn = that.gameService.getIdPlayer() === idPlayerTurn;
       console.log("isMyTurn : " + that.isMyTurn);
@@ -36,5 +36,4 @@ export class OpponentBoardComponent {
       this.gameService.attackCell(coordinate);
     }
   }
-
 }

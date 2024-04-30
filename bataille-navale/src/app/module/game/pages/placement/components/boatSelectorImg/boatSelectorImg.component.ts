@@ -18,13 +18,6 @@ export class BoatSelectorImgComponent {
   freeDragPosition: Point = { x: 0, y: 0 };
   private initialPosition: Point = { x: 0, y: 0 };
 
-  constructor() {
-    const that = this;
-    setInterval(() => {
-      console.log("BoatSelectorImgComponent :" + that.isMouseOverTheGrid);
-    }, 1000);
-  }
-
   onBoatSelected(boat: BoatDescription) {
     this.onBoatSelectedEvent.emit(boat);
   }

@@ -18,7 +18,7 @@ export class AttackGameComponent {
       (statusEndGame: StatusEndGame) => {
         console.log(statusEndGame);
         this.onGameFinishedEvent.emit(statusEndGame);
-      }
+      },
     );
   }
 }

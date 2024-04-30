@@ -77,10 +77,10 @@ describe("PlacementComponent", () => {
     component.onBoatSelectedIsPlacedOnTheGrid(); // Attempt to submit and emit
 
     expect(mockGameService.submitBoatsPositions).toHaveBeenCalledWith(
-      testBoats
+      testBoats,
     );
     expect(component.onAllBoatAreDisposeEvent.emit).toHaveBeenCalledWith(
-      testBoats
+      testBoats,
     );
   });
 });

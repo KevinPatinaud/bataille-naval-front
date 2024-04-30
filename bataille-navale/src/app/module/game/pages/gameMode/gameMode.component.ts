@@ -20,7 +20,7 @@ export class GameModeComponent {
     this.gameService
       .generateNewGame(GameMode.SOLO)
       .subscribe((idOpponent: string) =>
-        this.onGameModeChoosed.emit(GameMode.SOLO)
+        this.onGameModeChoosed.emit(GameMode.SOLO),
       );
   }
 

@@ -1,18 +1,21 @@
-<div class="multiplayerOptionBox">
-    <button class="closeBtn" (click)="closeBox()">X</button>
-    <p class="description">
-    Donne l'identifiant suivant à ton adversaire :
-    <p class="descriptionIdGame">
-    {{ myIdGame }}
-    </p>
-    <p class="description">
-    Ou renseigne son identifiant :
-    </p>
-    <p class="description">
-        <input class="inputIdGame" type="text" [ngModel]="opponentIdGame" (ngModelChange)="updateOpponentIdGame($event)" appForceUppercase appIdGameFormat/>
-    </p>
-    <p class="error" *ngIf="errorMessage.length >= 1">
-        {{ errorMessage }}
-    </p>
+<core-modal (closeModalEvent)="closeBox()">
+  <p class="description">Donne l'identifiant suivant à ton adversaire :</p>
 
-</div>
+  <p class="descriptionHighlight">
+    {{ myIdGame }}
+  </p>
+  <p class="description">Ou renseigne son identifiant :</p>
+  <p class="description">
+    <input
+      class="inputIdGame"
+      type="text"
+      [ngModel]="opponentIdGame"
+      (ngModelChange)="updateOpponentIdGame($event)"
+      appForceUppercase
+      appIdGameFormat
+    />
+  </p>
+  <p class="error" *ngIf="errorMessage.length >= 1">
+    {{ errorMessage }}
+  </p>
+</core-modal>

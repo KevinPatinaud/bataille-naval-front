@@ -8,8 +8,6 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CdkDrag } from "@angular/cdk/drag-drop";
 import { FormsModule } from "@angular/forms";
 
-
-
 export const API_BASE_URL_TOKEN = new InjectionToken<string>("api base url");
 
 @NgModule({
@@ -20,12 +18,13 @@ export const API_BASE_URL_TOKEN = new InjectionToken<string>("api base url");
     BrowserModule,
     BrowserAnimationsModule,
   ],
-  declarations:[
-  AppComponent,
-  ],
+  declarations: [AppComponent],
   bootstrap: [AppComponent],
   providers: [
-    { provide: API_BASE_URL_TOKEN, useValue: "http://" + window.location.hostname + ":8080" }
-  ]
+    {
+      provide: API_BASE_URL_TOKEN,
+      useValue: "http://" + window.location.hostname + ":8080",
+    },
+  ],
 })
 export class AppModule {}

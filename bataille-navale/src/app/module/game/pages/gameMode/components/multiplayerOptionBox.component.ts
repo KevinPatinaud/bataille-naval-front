@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewEncapsulation,
+} from "@angular/core";
 import { GameService } from "../../../services/game/game.service";
 import { GameMode } from "../../../locales/gameMode";
 
@@ -38,7 +44,7 @@ export class MultiPlayerOptionBoxComponent {
 
   updateOpponentIdGame(value: string) {
     this.opponentIdGame = value;
-    
+
     if (this.myIdGame === this.opponentIdGame) {
       this.errorMessage = "Vous ne pouvez pas utiliser votre propre id";
     }

@@ -3,7 +3,13 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { CdkDrag, CdkDragStart, Point } from "@angular/cdk/drag-drop";
 import { BoatDescription } from "src/app/module/game/models/boatDescription";
 import Boat from "src/app/module/game/models/boat";
-import { Croiseur, PorteAvion, SousMarin_1, SousMarin_2, Torpilleur } from "src/app/module/game/locales/boats";
+import {
+  Croiseur,
+  PorteAvion,
+  SousMarin_1,
+  SousMarin_2,
+  Torpilleur,
+} from "src/app/module/game/locales/boats";
 
 @Component({
   selector: "app-boat-selector",
@@ -26,13 +32,6 @@ export class BoatSelectorComponent {
   freeDragPosition: Point = { x: 0, y: 0 };
   private initialPosition: Point = { x: 0, y: 0 };
 
-  constructor() {
-    const that = this;
-    setInterval(() => {
-      console.log("boatSelector :" + that.isMouseOverTheGrid);
-    }, 1000);
-  }
-
   onBoatSelected(boat: BoatDescription) {
     if (!this.isBoatOnTheGrid(boat)) {
       this.onBoatSelectedEvent.emit(boat);
@@ -45,7 +44,7 @@ export class BoatSelectorComponent {
   isBoatOnTheGrid(boat: BoatDescription) {
     return (
       this.onGridBoats?.filter(
-        (b: Boat) => b.boatDescription.type === boat.type
+        (b: Boat) => b.boatDescription.type === boat.type,
       ).length === 1
     );
   }

@@ -1,30 +1,30 @@
-<div class="grid" >
-    @for(ceX of grid ; track ceX ; let x = $index)
-    {
-    <div  class="column">
-        @for(cell of ceX ; track cell ; let y = $index)
-        {
-        <div [id]="'myGrid_x' + x + '_y' + y" class="cell" >
-    
-            @if(cell.isRevealed )
-            {
-                @if(isCellOccupied(x , y))
-                {
-                    <img class="imgCell " src="../../../../assets/images/explosion.png"/>
-                }
+<div class="grid">
+  @for (ceX of grid; track ceX; let x = $index) {
+    <div class="column">
+      @for (cell of ceX; track cell; let y = $index) {
+        <div [id]="'myGrid_x' + x + '_y' + y" class="cell">
+          @if (cell.isRevealed) {
+            @if (isCellOccupied(x, y)) {
+              <img
+                class="imgCell"
+                src="../../../../assets/images/explosion.png"
+              />
             }
-            @else {
-                @if( isCellOccupied(x , y))
-                {
-                    <img  class="imgCell boatCellHide" src="../../../../assets/images/construction.jpg"/>
-                }
-                @else
-                {
-                    <img class="imgCell cloudCell" src="../../../../assets/images/cloud.jpg"/>
-                }
+          } @else {
+            @if (isCellOccupied(x, y)) {
+              <img
+                class="imgCell boatCellHide"
+                src="../../../../assets/images/construction.jpg"
+              />
+            } @else {
+              <img
+                class="imgCell cloudCell"
+                src="../../../../assets/images/cloud.jpg"
+              />
             }
+          }
         </div>
-    }
+      }
     </div>
-}
+  }
 </div>

@@ -1,18 +1,24 @@
 <div class="gridPlacement">
-    <div class="grid"  (mouseenter)="onMouseEnterInTheGrid()" (mouseleave)="onMouseExitTheGrid()">
-        <div *ngFor="let xit of [].constructor(10) ; let x = index" class="column">
-            <div *ngFor="let yit of [].constructor(10) ; let y = index" 
-            class="cell" 
-            [class.occupied]="cellIsOccupied({ x , y})"
-            [class.cellIsNearABoat]="cellIsNearABoat({ x , y})"
-            [class.cellIsConstructable]="cellHoverCanBeSelected()" 
-            [class.cellIsNotConstructable]="!cellHoverCanBeSelected()" 
-            [class.cellInTheBoatRange]="cellIsInTheBoatRange({ x , y})"
-            (click)="onSelectCell( {x , y} )"
-            (mouseenter)="onHoverCell( {x , y})"></div>
-        </div>
+  <div
+    class="grid"
+    (mouseenter)="onMouseEnterInTheGrid()"
+    (mouseleave)="onMouseExitTheGrid()"
+  >
+    <div *ngFor="let xit of [].constructor(10); let x = index" class="column">
+      <div
+        *ngFor="let yit of [].constructor(10); let y = index"
+        class="cell"
+        [class.occupied]="cellIsOccupied({ x, y })"
+        [class.cellIsNearABoat]="cellIsNearABoat({ x, y })"
+        [class.cellIsConstructable]="cellHoverCanBeSelected()"
+        [class.cellIsNotConstructable]="!cellHoverCanBeSelected()"
+        [class.cellInTheBoatRange]="cellIsInTheBoatRange({ x, y })"
+        (click)="onSelectCell({ x, y })"
+        (mouseenter)="onHoverCell({ x, y })"
+      ></div>
     </div>
-    <div class="infoArea" *ngIf="cellHoverCanBeSelected()">
-     Appuyer sur la touche “espace”<br/>pour changer l'axe du bateau
-    </div>
+  </div>
+  <div class="infoArea" *ngIf="cellHoverCanBeSelected()">
+    Appuyer sur la touche “espace”<br />pour changer l'axe du bateau
+  </div>
 </div>

@@ -1,6 +1,12 @@
 import { Component } from "@angular/core";
 import { Subscription } from "rxjs";
-import { Croiseur, PorteAvion, SousMarin_1, SousMarin_2, Torpilleur } from "../../../locales/boats";
+import {
+  Croiseur,
+  PorteAvion,
+  SousMarin_1,
+  SousMarin_2,
+  Torpilleur,
+} from "../../../locales/boats";
 import Boat from "../../../models/boat";
 import { GameService } from "../../../services/game/game.service";
 
@@ -39,7 +45,7 @@ export class OpponentBoatsStatesComponent {
     this.subscription = this.gameService.opponentBoatsUpdateEvent.subscribe(
       (opponentBoats: Boat[]) => {
         this.opponentBoats = opponentBoats;
-      }
+      },
     );
   }
 }

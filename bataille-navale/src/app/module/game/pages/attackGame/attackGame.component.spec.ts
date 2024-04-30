@@ -39,7 +39,7 @@ describe("AttackGameComponent", () => {
     // The mocked service emit directly, so we check only after un little task
     fixture.whenStable().then(() => {
       expect(component.onGameFinishedEvent.emit).toHaveBeenCalledWith(
-        StatusEndGame.WIN
+        StatusEndGame.WIN,
       );
     });
   });

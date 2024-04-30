@@ -1,11 +1,13 @@
-<div  
-[class.boatImgSelected]="selected" 
-[class.boatAlreadyPositionned]="disable" class="boatImg"
- [style.background-image]="'url(' + boatToDisplay?.image + ')'"
- [style.display]="(selected && isMouseOverTheGrid) ? 'none' : 'block'"
- cdkDrag
- #dragRef="cdkDrag"
- [cdkDragDisabled]="disable"
- [cdkDragFreeDragPosition]="freeDragPosition"
- (cdkDragStarted)="dragStarted($event , dragRef )"
- (cdkDragEnded)="dragEnded(dragRef)"></div>
+<div
+  [class.boatImgSelected]="selected"
+  [class.boatAlreadyPositionned]="disable"
+  class="boatImg"
+  [style.background-image]="'url(' + boatToDisplay?.image + ')'"
+  [style.display]="selected && isMouseOverTheGrid ? 'none' : 'block'"
+  cdkDrag
+  #dragRef="cdkDrag"
+  [cdkDragDisabled]="disable"
+  [cdkDragFreeDragPosition]="freeDragPosition"
+  (cdkDragStarted)="dragStarted($event, dragRef)"
+  (cdkDragEnded)="dragEnded(dragRef)"
+></div>

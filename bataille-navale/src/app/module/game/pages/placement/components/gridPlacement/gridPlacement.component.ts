@@ -34,12 +34,12 @@ export class GridPlacementComponent {
         xHead: this.getXBoatHead(
           cell,
           this.selectedBoat,
-          this.isHorizontalBoat
+          this.isHorizontalBoat,
         ),
         yHead: this.getYBoatHead(
           cell,
           this.selectedBoat,
-          this.isHorizontalBoat
+          this.isHorizontalBoat,
         ),
         isHorizontal: this.isHorizontalBoat,
       },
@@ -78,13 +78,13 @@ export class GridPlacementComponent {
     const xBoatHead = this.getXBoatHead(
       cell,
       this.selectedBoat,
-      this.isHorizontalBoat
+      this.isHorizontalBoat,
     );
 
     const yBoatHead = this.getYBoatHead(
       cell,
       this.selectedBoat,
-      this.isHorizontalBoat
+      this.isHorizontalBoat,
     );
 
     for (let i = 0; i < this.selectedBoat.size; i++) {
@@ -126,7 +126,7 @@ export class GridPlacementComponent {
   getXBoatHead(
     cell: Coordinate,
     boatDescription: BoatDescription,
-    isHorizontalBoat: boolean
+    isHorizontalBoat: boolean,
   ) {
     return isHorizontalBoat
       ? Math.min(cell.x, 10 - boatDescription.size)
@@ -136,7 +136,7 @@ export class GridPlacementComponent {
   getYBoatHead(
     cell: Coordinate,
     boatDescription: BoatDescription,
-    isHorizontalBoat: boolean
+    isHorizontalBoat: boolean,
   ) {
     return !isHorizontalBoat
       ? Math.min(cell.y, 10 - boatDescription.size)

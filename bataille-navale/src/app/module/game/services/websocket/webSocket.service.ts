@@ -29,8 +29,6 @@ export class WebSocketService {
     this.stompClient.subscribe(uri, callback);
   }
 
-
-
   send(uri: string, data: string | undefined) {
     console.log("this.stompClient.connected");
     console.log(this.stompClient.connected);
