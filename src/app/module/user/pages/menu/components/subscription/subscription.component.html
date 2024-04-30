@@ -1,0 +1,17 @@
+<form #myForm="ngForm" (ngSubmit)="subscribe(myForm)">
+<p class="description">
+  Adresse mail<br />
+  <input type="email" name="mail" ngModel  #mail="ngModel" validateEmail />
+</p>
+<div *ngIf="mail.errors?.['invalidEmail']" class="recommendation">
+    Veuillez entrer une adresse email valide !
+  </div>
+<p class="description">
+  Mot de passe<br />
+  <input type="password" ngModel name="password"/>
+</p>
+<p class="description">
+  <button type="submit" class="actionBtn">S'inscrire</button>
+</p>
+</form>
+

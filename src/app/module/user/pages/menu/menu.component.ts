@@ -1,9 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Output,
-  ViewEncapsulation,
-} from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 
 @Component({
   selector: "user-menu",
@@ -13,13 +8,17 @@ import {
 export class MenuComponent {
   @Output() closeMenuEvent: EventEmitter<any> = new EventEmitter();
 
+  subscriptionMode = false;
+
   constructor() {}
 
   closeMenu() {
     this.closeMenuEvent.emit();
   }
 
-  userConnect() {
-    throw new Error("Method not implemented.");
+  userConnected() {}
+
+  switchConnexionSubscription() {
+    this.subscriptionMode = ! this.subscriptionMode;
   }
 }

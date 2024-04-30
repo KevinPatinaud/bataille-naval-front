@@ -13,7 +13,6 @@ import { OpponentBoatsStatesComponent } from "./pages/attackGame/opponentBoatsSt
 import { GameEngineComponent } from "./pages/gameEngine/gameEngine.component";
 import { MultiPlayerOptionBoxComponent } from "./pages/gameMode/components/multiplayerOptionBox.component";
 import { GameModeComponent } from "./pages/gameMode/gameMode.component";
-import { InscriptionComponent } from "../user/pages/inscription/inscription.component";
 import { BoatSelectorComponent } from "./pages/placement/components/boatSelector/boatSelector.component";
 import { BoatSelectorImgComponent } from "./pages/placement/components/boatSelectorImg/boatSelectorImg.component";
 import { GridPlacementComponent } from "./pages/placement/components/gridPlacement/gridPlacement.component";
@@ -33,7 +32,6 @@ const routes: Routes = [{ path: "", component: GameEngineComponent }];
     ForceUppercaseDirective,
     ForceUrlFormatDirective,
     IdGameFormatDirective,
-    InscriptionComponent,
     GameEngineComponent,
     GameModeComponent,
     MultiPlayerOptionBoxComponent,

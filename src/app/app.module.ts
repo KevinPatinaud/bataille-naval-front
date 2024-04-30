@@ -5,8 +5,6 @@ import { GameModule } from "./module/game/game.module";
 import { CoreModule } from "./module/core/core.module";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { CdkDrag } from "@angular/cdk/drag-drop";
-import { FormsModule } from "@angular/forms";
 
 export const API_BASE_URL_TOKEN = new InjectionToken<string>("api base url");
 

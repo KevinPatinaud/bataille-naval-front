@@ -1,18 +1,21 @@
 <core-modal (closeModalEvent)="closeMenu()">
   <p class="title">Mon compte</p>
-  <p class="description">
-    Adresse mail<br />
-    <input />
-  </p>
-  <p class="description">
-    Mot de passe<br />
-    <input />
-  </p>
-  <p class="description">
-    <button class="actionBtn" (click)="userConnect()">Se connecter</button>
-  </p>
-  <p class="description">Ou</p>
-  <p class="description">
-    <button class="actionBtn" (click)="userConnect()">S'inscrire</button>
-  </p>
+  <ng-container *ngIf="!subscriptionMode">
+    <user-connexion (userConnectedEvent)="userConnected()" />
+    <p class="description">Ou</p>
+    <p class="description">
+      <button class="actionBtn" (click)="switchConnexionSubscription()">
+        S'inscrire
+      </button>
+    </p>
+  </ng-container>
+  <ng-container *ngIf="subscriptionMode">
+    <user-subscription />
+    <p class="description">Ou</p>
+    <p class="description">
+      <button class="actionBtn" (click)="switchConnexionSubscription()">
+        Se connecter
+      </button>
+    </p>
+  </ng-container>
 </core-modal>
